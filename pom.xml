@@ -35,6 +35,11 @@
 		<artifactId>jersey-client</artifactId>
 		<version>1.19.4</version>
 	</dependency>
+	<dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20180813</version>
+    </dependency>
   </dependencies>
   <build>
 	<plugins>
@@ -73,7 +78,7 @@
 			<artifactId>appassembler-maven-plugin</artifactId>
 			<version>1.10</version>
 			<configuration>
-				<assembleDirectory>${project.basedir}/bindist</assembleDirectory>
+				<assembleDirectory>${project.basedir}/scripts</assembleDirectory>
 				<programs>
 					<program>
 						<mainClass>fr.ul.miage.App</mainClass>

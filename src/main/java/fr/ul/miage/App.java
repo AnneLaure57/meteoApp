@@ -84,7 +84,7 @@ public class App extends Application{
 		//https://stackoverflow.com/questions/22627579/how-load-css-file-in-javafx8
 		scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
 		//not allow to modify the window 
-		//primaryStage.setResizable(false);
+		primaryStage.setResizable(false);
 		//To change the visibility to false
 		primaryStage.hide();
 		//for the responsive window's

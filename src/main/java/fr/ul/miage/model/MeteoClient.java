@@ -10,6 +10,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+import fr.ul.miage.meteo.json.Example;
 import fr.ul.miage.meteo.json.Result;
 
 public class MeteoClient {
@@ -44,7 +45,45 @@ public class MeteoClient {
 		//https://stackoverflow.com/questions/49555188/how-to-change-description-language-in-openweathermap-api-in-android
 		String request = WEBSERVICE + "weather?" + "q=" + getCity() + "," + getCountry() +
 				"&lang=" + lang + "&APPID=" + getApiKey() ;
+		/*String request = WEBSERVICE + "forecast?" + "q=" + getCity() + "," + getCountry() +
+				"&lang=" + lang + "&APPID=" + getApiKey() + "&cnt=5" ;*/
 		return request;
+	}
+	
+	public String buildRequestFor5() {
+		String request = WEBSERVICE + "forecast?" + "q=" + getCity() + "," + getCountry() +
+				"&lang=" + lang + "&APPID=" + getApiKey() + "&cnt=30";
+		return request;
+	}
+	
+	public String getJsonWeatherByCityNameFor5() {
+		String res = null;
+		
+		String request = buildRequestFor5();
+		try {
+			Client client = Client.create();
+			WebResource r = client.resource(request);
+			r.accept("application/json");
+			ClientResponse response = r.get(ClientResponse.class);
+			if (response.getStatus() != 200) {
+				LOG.severe("Erreur de requ�te :"+ request +"(code:"+ response.getStatus() + ")");
+				return null;
+			}
+			res= response.getEntity(String.class);
+		} catch (Exception e) {
+			LOG.severe("Erreur de webservice"+request);
+			return null;
+		}
+		return res;
+	}
+	
+	public Example getWeatherByCityNameFor5() {
+		Example ex = null;
+		String tmp = getJsonWeatherByCityName();
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		ex =  gson.fromJson(tmp, Example.class);
+		return ex;
 	}
 	
 	public String getJsonWeatherByCityName() {

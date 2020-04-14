@@ -10,30 +10,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ul.miage.controller.WeatherController">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ul.miage.controller.WeatherController">
    <children>
-      <AnchorPane prefHeight="134.0" prefWidth="900.0" styleClass="header">
+      <AnchorPane styleClass="header" VBox.vgrow="ALWAYS">
          <children>
             <Label layoutX="450.0" layoutY="27.0" styleClass="title" text="Météo App" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="371.0" AnchorPane.topAnchor="27.0" />
          </children>
       </AnchorPane>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="601.0" prefWidth="900.0">
         <items>
-            <AnchorPane prefHeight="300.0" prefWidth="900.0">
+            <AnchorPane>
                <children>
-                  <TextField fx:id="city" layoutX="207.0" layoutY="24.0" promptText="Ex : Nancy" />
-                  <TextField fx:id="refresh" layoutX="207.0" layoutY="77.0" promptText="Ex :  5" />
-                  <Button fx:id="buttonVal" layoutX="120.0" layoutY="139.0" mnemonicParsing="false" onAction="#valider" prefHeight="47.0" prefWidth="126.0" text="Valider">
-                     <styleClass>
-                        <String fx:value="btn-primary" />
-                        <String fx:value="btn" />
-                     </styleClass>
-                  </Button>
-                  <Label layoutX="63.0" layoutY="28.0" text="Rechercher une ville :" />
-                  <Label layoutX="24.0" layoutY="81.0" text="Rafraîchissement  (minutes) :" />
-                  <Label layoutX="24.0" layoutY="215.0" text="Résultat :" />
-                  <Label fx:id="result" layoutX="90.0" layoutY="215.0" />
-                  <AnchorPane layoutX="381.0" prefHeight="309.0" prefWidth="630.0" styleClass="pane">
+                  <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label fx:id="cityCountry" layoutX="15.0" layoutY="20.0" prefHeight="17.0" prefWidth="190.0" styleClass="title2" text="Ville " />
                         <Label fx:id="temperature" layoutX="315.0" layoutY="20.0" styleClass="title2" text="Température" />
@@ -65,11 +53,63 @@
                         <Label fx:id="pressure" layoutX="420.0" layoutY="267.0" />
                      </children>
                   </AnchorPane>
-                  <Label layoutX="24.0" layoutY="257.0" text="Dernière mise à jour :  " />
-                  <Label fx:id="lastUpdate" layoutX="150.0" layoutY="257.0" />
+                  <AnchorPane nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="11.0" layoutY="222.0" text="Résultat :" />
+                        <TextField fx:id="city" layoutX="172.0" layoutY="32.0" promptText="Ex : Nancy" />
+                        <Label layoutX="15.0" layoutY="266.0" text="Dernière mise à jour :  " />
+                        <Label fx:id="lastUpdate" layoutX="135.0" layoutY="266.0" />
+                        <TextField fx:id="refresh" layoutX="172.0" layoutY="70.0" promptText="Ex :  5" />
+                        <Button fx:id="buttonVal" layoutX="28.0" layoutY="143.0" mnemonicParsing="false" onAction="#valider" prefHeight="47.0" prefWidth="126.0" text="Valider" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="btn-primary" />
+                              <String fx:value="btn" />
+                           </styleClass>
+                        </Button>
+                        <Label layoutX="11.0" layoutY="35.0" text="Rechercher une ville :" />
+                        <Label layoutX="11.0" layoutY="74.0" text="Rafraîchissement  (minutes) :" />
+                        <Label fx:id="result" layoutX="70.0" layoutY="222.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="600.0" prefWidth="898.0" />
+            <AnchorPane styleClass="pane:content" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="27.0" layoutY="14.0" styleClass="bg-black-style" text="Prévisions sur 4 jours " />
+                  <AnchorPane layoutX="780.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" AnchorPane.rightAnchor="50.0">
+                     <children>
+                        <Label fx:id="date5" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="17.0" styleClass="bg-white-style" text="Date" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label fx:id="temp5" alignment="CENTER" layoutX="60.0" layoutY="46.0" text="Température" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <ImageView fx:id="imgIcon5" fitHeight="74.0" fitWidth="120.0" layoutX="55.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="14.0" />
+                        <Label fx:id="descrip5" alignment="CENTER" layoutX="60.0" layoutY="169.0" text="Description" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="530.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" AnchorPane.rightAnchor="290.0">
+                     <children>
+                        <Label fx:id="date4" alignment="CENTER" layoutX="35.0" layoutY="14.0" styleClass="bg-white-style" text="Date" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label fx:id="temp4" alignment="CENTER" layoutX="60.0" layoutY="46.0" text="Température" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <ImageView fx:id="imgIcon4" fitHeight="74.0" fitWidth="120.0" layoutX="1.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="14.0" />
+                        <Label fx:id="descrip4" alignment="CENTER" layoutX="60.0" layoutY="169.0" text="Description" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="280.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" AnchorPane.leftAnchor="290.0">
+                     <children>
+                        <Label fx:id="date3" alignment="CENTER" layoutX="35.0" layoutY="14.0" styleClass="bg-white-style" text="Date" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label fx:id="temp3" alignment="CENTER" layoutX="60.0" layoutY="46.0" text="Température" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <ImageView fx:id="imgIcon3" fitHeight="74.0" fitWidth="120.0" layoutX="3.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="14.0" />
+                        <Label fx:id="descrip3" alignment="CENTER" layoutX="60.0" layoutY="169.0" text="Description" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="30.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" AnchorPane.leftAnchor="50.0">
+                     <children>
+                        <Label fx:id="date2" alignment="CENTER" layoutX="35.0" layoutY="14.0" styleClass="bg-white-style" text="Date" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label fx:id="temp2" alignment="CENTER" layoutX="60.0" layoutY="46.0" prefHeight="17.0" prefWidth="88.0" text="Température" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <ImageView fx:id="imgIcon2" fitHeight="74.0" fitWidth="120.0" layoutX="66.0" layoutY="76.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="14.0" />
+                        <Label fx:id="descrip2" alignment="CENTER" layoutX="1.0" layoutY="169.0" prefHeight="17.0" prefWidth="120.0" text="Description" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
         </items>
       </SplitPane>
    </children>

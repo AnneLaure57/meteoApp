@@ -1,6 +1,5 @@
 .header {
-    -fx-min-height: 100px;
-    -fx-max-height: 100px;
+
     -fx-background-color: #2c397a;
 }
 
@@ -12,6 +11,16 @@
 
 .pane>.title2 {
     -fx-font-size: 20pt;
+    -fx-text-fill: #f7f7f7fd;
+}
+
+.bg-black-style {
+    -fx-font-size: 20pt;
+    -fx-text-fill: #2c397a;
+}
+
+.bg-white-style {
+    -fx-font-size: 14pt;
     -fx-text-fill: #f7f7f7fd;
 }
 
