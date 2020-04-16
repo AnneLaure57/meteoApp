@@ -4,20 +4,25 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import org.json.*;
 import org.json.JSONArray;
-import org.json.JSONML;
 import org.json.JSONObject;
 
-import fr.ul.miage.meteo.json.Example;
 import fr.ul.miage.meteo.json.Result;
 import fr.ul.miage.model.MeteoClient;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +31,45 @@ import javafx.scene.paint.Color;
 public class WeatherController {
 	
 	//List components
+	@FXML
+	private MenuBar mainItems;
+	
+	@FXML
+	private Menu params;
+	
+	@FXML
+	private Menu disp;
+	
+	@FXML
+	private MenuItem quit;
+	
+	@FXML
+	private MenuItem stoppedI;
+	
+	@FXML
+	private CheckMenuItem menuH;
+	
+	@FXML
+	private CheckMenuItem menuR;
+	
+	@FXML
+	private CheckMenuItem menuW;
+	
+	@FXML
+	private CheckMenuItem menuSunR;
+	
+	@FXML
+	private CheckMenuItem menuSunS;
+	
+	@FXML
+	private CheckMenuItem menuP;
+	
+	@FXML
+	private CheckMenuItem menuTMa;
+	
+	@FXML
+	private CheckMenuItem menuTMi;
+	
 	@FXML
     private TextField city;
 	
@@ -109,6 +153,9 @@ public class WeatherController {
 
     @FXML
     private Button buttonVal;
+    
+    @FXML
+    private Button buttonRef;
 
     @FXML
     private ImageView imgWeather;
@@ -152,7 +199,12 @@ public class WeatherController {
     
     private DateFormat dateFormat;
     
-    @FXML
+    private Timer timer;
+    
+    private boolean timerStart = false;
+    
+
+	@FXML
    	public void initialize() {
     	result.setText("Aucune recherche effectuée !");
     	lastUpdate.setText("N/A");
@@ -174,38 +226,259 @@ public class WeatherController {
     	imgIcon3.setImage(new Image("images/not_available.png"));
     	imgIcon4.setImage(new Image("images/not_available.png"));
     	imgIcon5.setImage(new Image("images/not_available.png"));
-    	
+    	/*other solution (Menu without MenuItem)
+    	quit.setGraphic(
+    	        ButtonBuilder.create()
+    	            .text("")
+    	            .onAction(new EventHandler<ActionEvent>(){
+    	                @Override public void handle(ActionEvent t) {
+    	                	System.exit(0);
+    	             } })
+    	            .build());*/
    	}
+    
+    @FXML 
+    void exitScene(ActionEvent event) {
+    	try {
+    		if (stateTimer()) {
+    			timer.cancel();
+    		}
+    		System.exit(0);
+    	} catch (Exception e) {
+    		LOG.severe("Erreur de saisie : "+ e.getMessage());
+    		e.printStackTrace();
+    	}
+    }
+    
+    @FXML 
+    void stopAct(ActionEvent event) {
+    	try {
+    		//System.out.println(stateTimer());
+    		if (stateTimer() == true) {
+    			timer.cancel();
+    		}
+    	} catch (Exception e) {
+    		LOG.severe("Erreur de saisie : "+ e.getMessage());
+    		e.printStackTrace();
+    	}
+    }
+    
+    @FXML 
+    void clean(ActionEvent event) {
+    	initialize();
+    	temperature.setText("N/A");
+    	alterTemp.setText("N/A");
+    	wind.setText("N/A");
+    	humidity.setText("N/A");
+    	sunrise.setText("N/A");
+    	sunset.setText("N/A");
+    	tempMax.setText("N/A");
+    	tempMin.setText("N/A");
+    	pressure.setText("N/A");
+    	description.setText("N/A");
+    	imgTemp.setImage(new Image("images/not_available.png"));
+    }
+    
+    @FXML
+    void display(ActionEvent event) {
+    	//TODO
+    	menuH.setOnAction(e -> 
+    	{
+	    	if (menuH.isSelected())
+	    	{
+	    		if (humidity.isVisible()) {
+	    			//System.out.println("hide");
+	    			humidity.setVisible(false);
+	    			imgWeather.setVisible(false);
+	    			
+	    		} else {
+	    			//System.out.println("show");
+	    			humidity.setVisible(true);
+	    			imgWeather.setVisible(true);
+	    		}
+	    		
+	    	}
+    	});
+    	
+    	menuR.setOnAction(e -> 
+    	{
+	    	if (menuR.isSelected())
+	    	{
+	    		if (alterTemp.isVisible()) {
+	    			alterTemp.setVisible(false);
+	    			imgAlter.setVisible(false);
+	    			
+	    		} else {
+	    			alterTemp.setVisible(true);
+	    			imgAlter.setVisible(true);
+	    		}
+	    		
+	    	}
+    	});
+    	
+    	menuW.setOnAction(e -> 
+    	{
+	    	if (menuW.isSelected())
+	    	{
+	    		if (wind.isVisible()) {
+	    			wind.setVisible(false);
+	    			imgWind.setVisible(false);
+	    			
+	    		} else {
+	    			wind.setVisible(true);
+	    			imgWind.setVisible(true);
+	    		}
+	    		
+	    	}
+    	});
+    	
+    	menuSunR.setOnAction(e -> 
+    	{
+	    	if (menuSunR.isSelected())
+	    	{
+	    		if (sunrise.isVisible()) {
+	    			sunrise.setVisible(false);
+	    			imgSunrise.setVisible(false);
+	    			
+	    		} else {
+	    			sunrise.setVisible(true);
+	    			imgSunrise.setVisible(true);
+	    		}
+	    		
+	    	}
+    	});
+    	
+    	menuSunS.setOnAction(e -> 
+    	{
+	    	if (menuSunS.isSelected())
+	    	{
+	    		if (sunset.isVisible()) {
+	    			sunset.setVisible(false);
+	    			imgSunset.setVisible(false);
+	    			
+	    		} else {
+	    			sunset.setVisible(true);
+	    			imgSunset.setVisible(true);
+	    		}
+	    		
+	    	}
+    	});
+    	
+    	menuP.setOnAction(e -> 
+    	{
+	    	if (menuP.isSelected())
+	    	{
+	    		if (pressure.isVisible()) {
+	    			pressure.setVisible(false);
+	    			imgPres.setVisible(false);
+	    			
+	    		} else {
+	    			pressure.setVisible(true);
+	    			imgPres.setVisible(true);
+	    		}
+	    		
+	    	}
+    	});
+    	
+    	menuTMa.setOnAction(e -> 
+    	{
+	    	if (menuTMa.isSelected())
+	    	{
+	    		if (tempMax.isVisible()) {
+	    			tempMax.setVisible(false);
+	    			
+	    		} else {
+	    			tempMax.setVisible(true);
+	    		}
+	    		
+	    		hideMinMax();
+	    	}
+	    	
+    	});
+    	
+    	menuTMi.setOnAction(e -> 
+    	{
+	    	if (menuTMi.isSelected())
+	    	{
+	    		if (tempMin.isVisible()) {
+	    			tempMin.setVisible(false);
+	    			
+	    		} else {
+	    			tempMin.setVisible(true);
+	    		}
+	    		
+	    		hideMinMax();
+	    	}
+    	});
+    }
+    
+    public void hideMinMax() {
+    	if (!tempMax.isVisible() && !tempMin.isVisible()) {
+    		imgMinMax.setVisible(false);
+    	} else {
+    		imgMinMax.setVisible(true);
+    	}
+    }
+    
+    public void checkTextFieldCity() {
+    	if (city.getText() == null || city.getText().trim().isEmpty()) {
+    		result.setText("Veuillez saisir une ville !");
+    		result.setTextFill(Color.RED);
+    	} else {
+    		result.setText("Recherche terminée !");
+    		result.setTextFill(Color.GREEN);
+    		displayGUI();
+    	}
+		getDate();
+    }
     
     @FXML
     void valider(ActionEvent event) {
-    	
     	try {
-			if (city.getText() == null || city.getText().trim().isEmpty()) {
-	    		result.setText("Veuillez saisir une ville !");
-	    		result.setTextFill(Color.RED);
-	    	} else {
-	    		result.setText("Recherche terminée !");
-	    		result.setTextFill(Color.GREEN);
-	    		displayGUI();
-	    	}
-			getDate();
+    		checkTextFieldCity();
     	} catch (Exception e) {
     		LOG.severe("Erreur de saisie : "+ e.getMessage());
-    		//e.printStackTrace();
+    		e.printStackTrace();
     		System.exit(-1);
     	}
     }
     
-    public String getTemp (Float number, Boolean temperature) {
-    	Float temp = temperature ? number - 273.15f : number;
-    	return String.valueOf(Math.round(temp * 100.0) / 100.0);
+    /** 
+     * <b>getTemp</b> 
+     * @param nb
+     * 		contient le nombre non converti en Farhenheit
+     * @param temperature 
+     * 		Boolean : si c'est une température ou pas
+     * @return convertTemp
+     *     retourne la température en Celsius (initialement en Farhenheit)
+     */ 
+    
+    public String getTemp (Float nb, Boolean temperature) {
+    	Float temp = temperature ? nb - 273.15f : nb;
+    	String convertTemp = String.valueOf(Math.round(temp * 100.0) / 100.0);
+    	return convertTemp;
     }
     
-    public String getTempDouble (Double number, Boolean temperature) {
-    	Float temp = (float) (temperature ? number - 273.15f : number);
-    	return String.valueOf(Math.round(temp * 100.0) / 100.0);
+    /** 
+     * <b>getTempDouble</b> 
+     * @param nb
+     * 		contient le nombre non converti en Farhenheit
+     * @param temperature 
+     * 		Boolean : si c'est une température ou pas
+     * @return convertTemp
+     *     retourne la température en Celsius (initialement en Farhenheit)
+     */ 
+    
+    public String getTempDouble (Double nb, Boolean temperature) {
+    	Float temp = (float) (temperature ? nb - 273.15f : nb);
+    	String convertTemp = String.valueOf(Math.round(temp * 100.0) / 100.0);
+    	return convertTemp;
     }
+    
+    /** 
+     * <b>getDate</b> 
+     *     permet d'obtenir la date et l'heure de actuelle au moment de la validation
+     */ 
     
     public void getDate() {
     	dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -214,6 +487,15 @@ public class WeatherController {
     	LOG.fine(dateFormat.format(date));
     	lastUpdate.setText("le " + dateFormat.format(date) + " à " + timeFormat.format(date));
     }
+    
+    /** 
+     * <b>addDays</b> 
+     * 
+     * @param nbDays
+     * 		permet d'obtenir le jour suivant la date actuelle
+     * @return dateFormat.format(date)
+     * 		retourne une string contenant une la nouvelle date
+     */ 
     
     public String addDays(int nbDays) {
     	dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -225,6 +507,17 @@ public class WeatherController {
     	return dateFormat.format(date);
     }
     
+    /** 
+     * <b>getTimeSun</b> 
+     * 
+     * permet d'avoir l'heure du coucher de soleil et du lever du soleil
+     * 
+     * @param time
+     * 		contient un nombre en secondes, qui sera ensuite convertie en heures et minutes
+     * @return convertDate
+     * 		retourne l'heure 
+     */ 
+    
     @SuppressWarnings("deprecation")
     public String getTimeSun(long time) {
     	Date date = new Date(time);
@@ -235,7 +528,7 @@ public class WeatherController {
 	public void displayGUI() {
       	cl = new MeteoClient(city.getText());
       	Result res = cl.getWeatherByCityName();
-		LOG.fine(cl.getJsonWeatherByCityName());
+		//System.out.println(cl.getJsonWeatherByCityName());
 		
       	//For the current Days
 		//Settings for the interface
@@ -270,6 +563,19 @@ public class WeatherController {
 		
     }
 	
+	/** 
+     * <b>getIcon</b> 
+     * 
+     * permet d'obtenir l'icône associée à l'évènement météorologique
+     * 
+     * @param nbIcon
+     * 		correspond à l'élément de la requête, ex : 8 donnera le 8 élément de l'élement liste de la requête forecast (pour obtenir les prévisions)
+     * @param obj
+     * 		objet json contenant les informations de la requête
+     * @return icon
+     * 		retourne la string de l'icône
+     */ 
+	
 	public String getIcon(int nbIcon, JSONObject obj) {
 		JSONObject weatherList = obj.getJSONArray("list").getJSONObject(nbIcon);
 		JSONArray weatherEl = weatherList.getJSONArray("weather");
@@ -277,12 +583,40 @@ public class WeatherController {
 		return icon;
 	}
 	
+	/** 
+     * <b>getDesciption</b> 
+     * 
+     * permet d'obtenir la description associée à l'évènement météorologique
+     * 
+     * @param nbDesc
+     * 		correspond à l'élément de la requête, ex : 8 donnera le 8 élément de l'élement liste de la requête forecast (pour obtenir les prévisions)
+     * @param obj
+     * 		objet json contenant les informations de la requête
+     * @return description
+     * 		retourne la string de la description, ex : couvert
+     */ 
+	
 	public String getDesciption(int nbDesc, JSONObject obj) {
 		JSONObject weatherList = obj.getJSONArray("list").getJSONObject(nbDesc);
 		JSONArray weatherEl = weatherList.getJSONArray("weather");
 		String description = weatherEl.getJSONObject(0).getString("description");
 		return description;
 	}
+	
+	/** 
+     * <b>getTempMaxMin</b> 
+     * 
+     * permet d'obtenir les températures associées à l'évènement météorologique
+     * 
+     * @param nbDesc
+     * 		correspond à l'élément de la requête, ex : 8 donnera le 8 élément de l'élement liste de la requête forecast (pour obtenir les prévisions)
+     * @param obj
+     * 		objet json contenant les informations de la requête
+     * @param temp_string
+     * 		correspond au nom de la température dans la requête : temp_max, temp_min...
+     * @return temp
+     * 		retourne le nombre au format Double temp
+     */ 
 	
 	public Double getTempMaxMin(int nbDesc, JSONObject obj, String temp_string) {
 		JSONObject mainList = obj.getJSONArray("list").getJSONObject(nbDesc);
@@ -301,38 +635,6 @@ public class WeatherController {
       	String jsonString = cl.getJsonWeatherByCityNameFor5() ; //assign your JSON String here
       	JSONObject obj = new JSONObject(jsonString);
       	//System.out.println("Request : " + obj);
-
-      	//Get elements from list
-      	/*JSONArray arr = obj.getJSONArray("list");
-  		//System.out.println("list : " + arr);
-  		for (int i = 0; i < arr.length(); i++)
-  		{
-  			String dt_txt = arr.getJSONObject(i).getString("dt_txt");
-  			//System.out.println(arr.getJSONObject(i).getString("dt_txt"));
-  			int dt = arr.getJSONObject(i).getInt("dt");
-  			//System.out.println(arr.getJSONObject(i).getInt("dt"));
-  		}
-      	
-      	//Get elements from main list
-		JSONObject mainList = obj.getJSONArray("list").getJSONObject(5);
-		JSONObject mainEl = mainList.getJSONObject("main");
-		System.out.println("temp_max value: " + mainEl.get("temp_max"));
-		System.out.println("temp_min value: " + mainEl.get("temp_min"));
-		
-		//Get elements from weather list
-		JSONObject weatherList = obj.getJSONArray("list").getJSONObject(5);
-		JSONArray weatherEl = weatherList.getJSONArray("weather");
-		System.out.println(weatherEl);
-		for (int i = 0; i < weatherEl.length(); i++)
-  		{
-			//description
-			System.out.println("taille " + weatherEl.length());
-  			String description = weatherEl.getJSONObject(i).getString("description");
-  			System.out.println(description);
-  			//icon
-  			String icon = weatherEl.getJSONObject(i).getString("icon");
-  			System.out.println(icon);
-  		}*/
 		
       	//date
       	//other possibility : use dt_txt in list
@@ -342,28 +644,67 @@ public class WeatherController {
       	date5.setText("J+4 : " + addDays(4));
       	
       	//temperature
-		temp2.setText(getTempDouble(getTempMaxMin(5,obj,"temp_max"), true) + "°C/" + getTempDouble(getTempMaxMin(5,obj,"temp_min"), true) + "°C");
-		temp3.setText(getTempDouble(getTempMaxMin(13,obj,"temp_max"), true) + "°C/" + getTempDouble(getTempMaxMin(13,obj,"temp_min"), true) + "°C");
-		temp4.setText(getTempDouble(getTempMaxMin(21,obj,"temp_max"), true) + "°C/" + getTempDouble(getTempMaxMin(21,obj,"temp_min"), true) + "°C");
-		temp5.setText(getTempDouble(getTempMaxMin(29,obj,"temp_max"), true) + "°C/" + getTempDouble(getTempMaxMin(29,obj,"temp_min"), true) + "°C");
+		temp2.setText(getTempDouble(getTempMaxMin(8,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(8,obj,"temp_max"), true) + "°C");
+		temp3.setText(getTempDouble(getTempMaxMin(16,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(16,obj,"temp_max"), true) + "°C");
+		temp4.setText(getTempDouble(getTempMaxMin(24,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(23,obj,"temp_max"), true) + "°C");
+		temp5.setText(getTempDouble(getTempMaxMin(32,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(32,obj,"temp_max"), true) + "°C");
 		
 		//description
-		descrip2.setText(getDesciption(5,obj));
-		descrip3.setText(getDesciption(13,obj));
-		descrip4.setText(getDesciption(21,obj));
-		descrip5.setText(getDesciption(29,obj));
+		descrip2.setText(getDesciption(8,obj));
+		descrip3.setText(getDesciption(16,obj));
+		descrip4.setText(getDesciption(24,obj));
+		descrip5.setText(getDesciption(32,obj));
       	
       	//Imagesview
-		imgIcon2.setImage(new Image("images/" + getIcon(5,obj) +".png"));
-		imgIcon3.setImage(new Image("images/" + getIcon(13,obj) +".png"));
-		imgIcon4.setImage(new Image("images/" + getIcon(21,obj) +".png"));
-		imgIcon5.setImage(new Image("images/" + getIcon(29,obj)+".png"));
+		imgIcon2.setImage(new Image("images/" + getIcon(8,obj) +".png"));
+		imgIcon3.setImage(new Image("images/" + getIcon(16,obj) +".png"));
+		imgIcon4.setImage(new Image("images/" + getIcon(24,obj) +".png"));
+		imgIcon5.setImage(new Image("images/" + getIcon(32,obj)+".png"));
 		
 	}
-    
-	//TODO
-    public void updateGUI() {
-    	
+	
+	/** 
+     * <b>stateTimer</b> 
+     * 
+     * permet d'obtenir les températures associées à l'évènement météorologique
+     * 
+     * @return timerStart
+     * 		retourne l'état actuel du timer, false = le timer n'a pas démarré ou true = le timer est en route
+     */
+	
+	public boolean stateTimer() {
+        return this.timerStart;
     }
-
+    
+	@FXML
+	void reload(ActionEvent event) throws Exception{
+		try {
+			if (refresh.getText() == null || refresh.getText().trim().isEmpty() || city.getText() == null || city.getText().trim().isEmpty()) {
+				result.setText("Veuillez saisir un nombre en minutes ou une ville valide !");
+	    		result.setTextFill(Color.RED);
+			} else {
+				long period = Integer.parseInt(refresh.getText());
+				//System.out.println("Nb Minutes : " + period);
+				long millisecondes = TimeUnit.MINUTES.toMillis(period);
+				//System.out.println("Nb millisecondes : " + millisecondes);
+				timer = new Timer();
+				timer.scheduleAtFixedRate(new TimerTask() {
+			        @Override
+			        public void run() {
+			        	timerStart = true;
+			        	//allow to make a pause and avoid the IllegalStateException Thread Timer-0
+			        	Platform.runLater(() -> {
+			                displayGUI();
+			            });
+			        }
+				}, period, millisecondes);
+				result.setText("Recherche terminée !");
+	    		result.setTextFill(Color.GREEN);
+			}
+			getDate();
+        } catch (NullPointerException  | NumberFormatException  | IllegalStateException  e) {
+        	LOG.severe("Erreur de saisie : "+ e.getMessage());
+    		e.printStackTrace();
+        }
+    }
 }

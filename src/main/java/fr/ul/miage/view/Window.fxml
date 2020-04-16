@@ -2,7 +2,11 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +18,29 @@
    <children>
       <AnchorPane styleClass="header" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="450.0" layoutY="27.0" styleClass="title" text="Météo App" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="371.0" AnchorPane.topAnchor="27.0" />
+            <Label alignment="CENTER" layoutX="450.0" layoutY="27.0" prefHeight="42.0" prefWidth="614.0" styleClass="title" text="Météo App" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0" />
+            <MenuBar fx:id="mainItems" layoutX="-1.0" layoutY="1.0" prefHeight="25.0" prefWidth="1010.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <menus>
+                <Menu fx:id="disp" mnemonicParsing="false" text="Affichage">
+                  <items>
+                        <CheckMenuItem fx:id="menuH" mnemonicParsing="false" onAction="#display" text="Humidité" />
+                        <CheckMenuItem fx:id="menuR" mnemonicParsing="false" onAction="#display" text="Ressentie" />
+                        <CheckMenuItem fx:id="menuW" mnemonicParsing="false" onAction="#display" text="Vent" />
+                        <CheckMenuItem fx:id="menuSunR" mnemonicParsing="false" onAction="#display" text="Lever" />
+                        <CheckMenuItem fx:id="menuSunS" mnemonicParsing="false" onAction="#display" text="Coucher" />
+                        <CheckMenuItem fx:id="menuP" mnemonicParsing="false" onAction="#display" text="Pression" />
+                        <CheckMenuItem fx:id="menuTMa" mnemonicParsing="false" onAction="#display" text="Température Max" />
+                        <CheckMenuItem fx:id="menuTMi" mnemonicParsing="false" onAction="#display" text="Température Min" />
+                  </items>
+                </Menu>
+                <Menu fx:id="params" mnemonicParsing="false" text="Paramètres">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clean" text="Nettoyer" />
+                        <MenuItem fx:id="stoppedI" mnemonicParsing="false" onAction="#stopAct" text="Actualisation arrêt" />
+                        <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#exitScene" text="Quitter" />
+                     </items></Menu>
+              </menus>
+            </MenuBar>
          </children>
       </AnchorPane>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="601.0" prefWidth="900.0">
@@ -34,9 +60,9 @@
                         <Label fx:id="tempMin" layoutX="130.0" layoutY="221.0" styleClass="min" />
                         <Label layoutX="315.0" layoutY="106.0" text="Vent " />
                         <Label fx:id="wind" layoutX="420.0" layoutY="106.0" />
-                        <Label layoutX="315.0" layoutY="169.0" text="Levé du soleil" />
+                        <Label layoutX="315.0" layoutY="169.0" prefHeight="17.0" prefWidth="81.0" text="Lever du soleil" />
                         <Label fx:id="sunrise" layoutX="420.0" layoutY="169.0" />
-                        <Label layoutX="315.0" layoutY="230.0" text="Couché du soleil" />
+                        <Label layoutX="315.0" layoutY="230.0" text="Coucher du soleil" />
                         <Label fx:id="sunset" layoutX="420.0" layoutY="230.0" />
                         <ImageView fx:id="imgMinMax" fitHeight="100.0" fitWidth="68.0" layoutX="180.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="imgTemp" fitHeight="74.0" fitWidth="120.0" layoutX="510.0" pickOnBounds="true" preserveRatio="true" />
@@ -69,6 +95,12 @@
                         <Label layoutX="11.0" layoutY="35.0" text="Rechercher une ville :" />
                         <Label layoutX="11.0" layoutY="74.0" text="Rafraîchissement  (minutes) :" />
                         <Label fx:id="result" layoutX="70.0" layoutY="222.0" />
+                        <Button fx:id="buttonRef" layoutX="172.0" layoutY="143.0" mnemonicParsing="false" onAction="#reload" prefHeight="47.0" prefWidth="126.0" text="Actualiser" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="btn-primary" />
+                              <String fx:value="btn" />
+                           </styleClass>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>

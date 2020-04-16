@@ -1,18 +1,6 @@
 package fr.ul.miage;
 
 import java.io.IOException;
-import java.util.logging.Logger;
-
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-
-import fr.ul.miage.meteo.json.Result;
-import fr.ul.miage.model.MeteoClient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+
+/**
+ * 
+ * <p>Application Météo</p>
+ * 
+ * @author Anne-Laure CHARLES
+ * @version 1.0
+ * 
+ */
 
 public class App extends Application{
 
@@ -68,6 +65,13 @@ public class App extends Application{
 		}
 	}*/
 	
+	/** 
+     * <b>Start</b> 
+     * 
+     * @param primaryStage
+     *     permet d'afficher, modifier le contenu de l'objet scene (qui contient le noeud parent)
+     */ 
+	
 	public void start(Stage primaryStage) {
 		Parent root =  null;
 		try {
@@ -80,8 +84,6 @@ public class App extends Application{
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("TP3 - Programmation Objet Avancée");
 		primaryStage.getIcons().add(new Image("images/logo.jpg"));
-		//https://www.google.com/search?q=javafx+maven+load+css&rlz=1C1CHBF_frFR869FR869&oq=javafx+maven+load+css&aqs=chrome..69i57j69i60.6981j0j4&sourceid=chrome&ie=UTF-8
-		//https://stackoverflow.com/questions/22627579/how-load-css-file-in-javafx8
 		scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
 		//not allow to modify the window 
 		primaryStage.setResizable(false);

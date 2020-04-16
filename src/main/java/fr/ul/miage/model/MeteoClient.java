@@ -40,21 +40,38 @@ public class MeteoClient {
 		setCountry(country);
 	}
 	
+	/** 
+     * <b>buildRequest</b> 
+     * 
+     * @return request
+     *     contient la requête avec l'adresse de OpenWeather, les informations du jour, la ville, le pays , la langue et la clé de l'api
+     */ 
+	
 	public String buildRequest() {
-		// Change to Fr
-		//https://stackoverflow.com/questions/49555188/how-to-change-description-language-in-openweathermap-api-in-android
 		String request = WEBSERVICE + "weather?" + "q=" + getCity() + "," + getCountry() +
 				"&lang=" + lang + "&APPID=" + getApiKey() ;
-		/*String request = WEBSERVICE + "forecast?" + "q=" + getCity() + "," + getCountry() +
-				"&lang=" + lang + "&APPID=" + getApiKey() + "&cnt=5" ;*/
 		return request;
 	}
 	
+	/** 
+     * <b>buildRequestFor5</b> 
+     * 
+     * @return request
+     *     contient la requête avec l'adresse de OpenWeather, les informations des 4 prochains jours, la ville, le pays , la langue et la clé de l'api
+     */ 
+	
 	public String buildRequestFor5() {
 		String request = WEBSERVICE + "forecast?" + "q=" + getCity() + "," + getCountry() +
-				"&lang=" + lang + "&APPID=" + getApiKey() + "&cnt=30";
+				"&lang=" + lang + "&APPID=" + getApiKey() + "&cnt=40";
 		return request;
 	}
+	
+	/** 
+     * <b>getJsonWeatherByCityNameFor5</b> 
+     * 
+     * @return res
+     *     permet d'otbenir la requête json
+     */ 
 	
 	public String getJsonWeatherByCityNameFor5() {
 		String res = null;
@@ -77,6 +94,13 @@ public class MeteoClient {
 		return res;
 	}
 	
+	/** 
+     * <b>getWeatherByCityNameFor5</b> 
+     * 
+     * @return ex
+     *     permet générer la requête json
+     */ 
+	
 	public Example getWeatherByCityNameFor5() {
 		Example ex = null;
 		String tmp = getJsonWeatherByCityName();
@@ -85,6 +109,13 @@ public class MeteoClient {
 		ex =  gson.fromJson(tmp, Example.class);
 		return ex;
 	}
+	
+	/** 
+     * <b>getJsonWeatherByCityName</b> 
+     * 
+     * @return res
+     *     permet d'otbenir la requête json pour un jour
+     */ 
 	
 	public String getJsonWeatherByCityName() {
 		String res = null;
@@ -107,6 +138,13 @@ public class MeteoClient {
 		return res;
 	}
 	
+	/** 
+     * <b>getWeatherByCityName</b> 
+     * 
+     * @return ex
+     *     permet générer la requête json pour le jour courant
+     */ 
+	
 	public Result getWeatherByCityName() {
 		Result res = null;
 		String tmp = getJsonWeatherByCityName();
@@ -115,6 +153,13 @@ public class MeteoClient {
 		res =  gson.fromJson(tmp, Result.class);
 		return res;
 	}
+	
+	/** 
+     * <b>getApiKey</b> 
+     * 
+     * @return apiKey
+     *     permet d'obtenir la clé de l'api
+     */ 
 
 	public String getApiKey() {
 		return apiKey;
@@ -123,6 +168,14 @@ public class MeteoClient {
 	public void setApiKey(String apiKey) {
 		this.apiKey = apiKey;
 	}
+	
+	/** 
+     * <b>getCity</b> 
+     * 
+     * @return city
+     *     permet d'obtenir la ville
+     */ 
+
 
 	public String getCity() {
 		return city;
@@ -131,7 +184,14 @@ public class MeteoClient {
 	public void setCity(String city) {
 		this.city = city;
 	}
-
+	
+	/** 
+     * <b>getCountry</b> 
+     * 
+     * @return country
+     *     permet d'obtenir le pays
+     */ 
+	
 	public String getCountry() {
 		return country;
 	}
