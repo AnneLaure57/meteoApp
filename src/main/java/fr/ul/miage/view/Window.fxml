@@ -85,7 +85,7 @@
                         <TextField fx:id="city" layoutX="172.0" layoutY="32.0" promptText="Ex : Nancy" />
                         <Label layoutX="15.0" layoutY="266.0" text="Dernière mise à jour :  " />
                         <Label fx:id="lastUpdate" layoutX="135.0" layoutY="266.0" />
-                        <TextField fx:id="refresh" layoutX="172.0" layoutY="70.0" promptText="Ex :  5" />
+                        <TextField fx:id="refresh" layoutX="172.0" layoutY="70.0" promptText="Ex :  1" />
                         <Button fx:id="buttonVal" layoutX="28.0" layoutY="143.0" mnemonicParsing="false" onAction="#valider" prefHeight="47.0" prefWidth="126.0" text="Valider" textAlignment="CENTER">
                            <styleClass>
                               <String fx:value="btn-primary" />

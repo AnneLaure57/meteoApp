@@ -1,12 +1,12 @@
 # Liste des Fonctionnalités
 
-## Interface de la baignoire
+## Interface de l'application Météo
 
 </br>![Image not found](images/interface1.png "interface")
 
-### 1) Régler le volume totale de la baignoire :
+### 1) Chercher les prévisions pour une ville
 
-Le premier slider (barre graduée) permet de définir le volume initiale contenu dans la baignoire.
+En rentrant le nom d'une ville, vous pouvez obtenir les prévisions du jour plus ceux des 4 prochains jours (l'api ne permet d'avoir que les prévisions des 5 prochains jours en version gratuite). Peu importe l'écriture (Majuscule ou minucule), tant que la ville est bien écrite, la recherche se déroulera sans problème, cliquez ensuite sur le bouton *Valider*.
 
 </br>![Image not found](images/interface2.png "interface")
 

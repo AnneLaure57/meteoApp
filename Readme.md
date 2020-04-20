@@ -1,6 +1,6 @@
 # Projet TP3 Anne-Laure Charles
 
-Ce projet correspond au premier TP réalisé lors du cours de programation avancée objet en Master 1 MIAGE.
+Ce projet correspond au dernier TP réalisé lors du cours de programation avancée objet en Master 1 MIAGE.
 
 ## Dans le zip :
 
@@ -15,14 +15,14 @@ Anne-Laure CHARLES
 
 ## Licence
 
-Sous la licence WTFL.
+Sous la licence UNLICENCE.
 
 ## Lien GitHub
 
 ### HTTPS
 
-git clone https://github.com/AnneLaure57/meteo_app.git
+git clone https://github.com/AnneLaure57/meteoApp.git
 
 ### SSH
 
-git clone git@github.com:AnneLaure57/meteo_app.git
+git clone git@github.com:AnneLaure57/meteoApp.git

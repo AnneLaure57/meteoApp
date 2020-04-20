@@ -197,6 +197,8 @@ public class WeatherController {
     
     private MeteoClient cl;
     
+    private Result res;
+    
     private DateFormat dateFormat;
     
     private Timer timer;
@@ -227,14 +229,11 @@ public class WeatherController {
     	imgIcon4.setImage(new Image("images/not_available.png"));
     	imgIcon5.setImage(new Image("images/not_available.png"));
     	/*other solution (Menu without MenuItem)
-    	quit.setGraphic(
-    	        ButtonBuilder.create()
-    	            .text("")
-    	            .onAction(new EventHandler<ActionEvent>(){
-    	                @Override public void handle(ActionEvent t) {
-    	                	System.exit(0);
-    	             } })
-    	            .build());*/
+    	quit.setGraphic( ButtonBuilder.create().text("") .onAction(new EventHandler<ActionEvent>(){
+    		@Override
+    		public void handle(ActionEvent t) {
+    	          System.exit(0);
+    	           } }).build());*/
    	}
     
     @FXML 
@@ -253,8 +252,9 @@ public class WeatherController {
     @FXML 
     void stopAct(ActionEvent event) {
     	try {
-    		//System.out.println(stateTimer());
     		if (stateTimer() == true) {
+    			result.setText("Actualisation stoppée !");
+    			result.setTextFill(Color.BLUE);
     			timer.cancel();
     		}
     	} catch (Exception e) {
@@ -287,12 +287,11 @@ public class WeatherController {
 	    	if (menuH.isSelected())
 	    	{
 	    		if (humidity.isVisible()) {
-	    			//System.out.println("hide");
+	    			LOG.info("cacher");
 	    			humidity.setVisible(false);
 	    			imgWeather.setVisible(false);
-	    			
 	    		} else {
-	    			//System.out.println("show");
+	    			LOG.info("visible");
 	    			humidity.setVisible(true);
 	    			imgWeather.setVisible(true);
 	    		}
@@ -425,9 +424,23 @@ public class WeatherController {
     		result.setText("Veuillez saisir une ville !");
     		result.setTextFill(Color.RED);
     	} else {
+    		checkCityName();
+    	}
+    }
+    
+    public void checkCityName() {
+    	cl = new MeteoClient(city.getText());
+      	res = cl.getWeatherByCityName();
+		LOG.info(cl.getJsonWeatherByCityName());
+  
+        if (res == null) {
+        	LOG.severe("La ville que vous avez saisie n'existe pas");
+            result.setText("Veuillez saisir un nom de ville valide !");
+    		result.setTextFill(Color.RED);
+        } else {
     		result.setText("Recherche terminée !");
     		result.setTextFill(Color.GREEN);
-    		displayGUI();
+    		displayGUI(res);
     	}
 		getDate();
     }
@@ -439,7 +452,7 @@ public class WeatherController {
     	} catch (Exception e) {
     		LOG.severe("Erreur de saisie : "+ e.getMessage());
     		e.printStackTrace();
-    		System.exit(-1);
+    		//System.exit(-1);
     	}
     }
     
@@ -525,11 +538,8 @@ public class WeatherController {
     	return convertDate;
     }
     
-	public void displayGUI() {
-      	cl = new MeteoClient(city.getText());
-      	Result res = cl.getWeatherByCityName();
-		//System.out.println(cl.getJsonWeatherByCityName());
-		
+	public void displayGUI(Result res) {
+      	
       	//For the current Days
 		//Settings for the interface
 		temperature.setText(getTemp(res.getMain().getTemp(), true) + "°C");
@@ -540,7 +550,7 @@ public class WeatherController {
 		wind.setText(getTemp(res.getWind().getSpeed(), false) + " m/s");
 		description.setText(res.getWeather().get(0).getDescription());
 		cityCountry.setText(res.getName() + ", " + res.getSys().getCountry());
-		System.out.println("Ville saisie : " + res.getName() + ", " + res.getSys().getCountry());
+		LOG.info("Ville saisie : " + res.getName() + ", " + res.getSys().getCountry());
 		humidity.setText(res.getMain().getHumidity() + "%");
 		
 		long timeSunr = (long) res.getSys().getSunrise() * 1000;
@@ -679,14 +689,12 @@ public class WeatherController {
 	@FXML
 	void reload(ActionEvent event) throws Exception{
 		try {
-			if (refresh.getText() == null || refresh.getText().trim().isEmpty() || city.getText() == null || city.getText().trim().isEmpty()) {
-				result.setText("Veuillez saisir un nombre en minutes ou une ville valide !");
+			if (refresh.getText() == null || refresh.getText().trim().isEmpty() || city.getText() == null || city.getText().trim().isEmpty() || res == null) {
+				result.setText("Veuillez remplir tous les champs ! ");
 	    		result.setTextFill(Color.RED);
 			} else {
 				long period = Integer.parseInt(refresh.getText());
-				//System.out.println("Nb Minutes : " + period);
 				long millisecondes = TimeUnit.MINUTES.toMillis(period);
-				//System.out.println("Nb millisecondes : " + millisecondes);
 				timer = new Timer();
 				timer.scheduleAtFixedRate(new TimerTask() {
 			        @Override
@@ -694,14 +702,14 @@ public class WeatherController {
 			        	timerStart = true;
 			        	//allow to make a pause and avoid the IllegalStateException Thread Timer-0
 			        	Platform.runLater(() -> {
-			                displayGUI();
+			                displayGUI(res);
+			                getDate();
+			                result.setText("Nouvelle actualisation en cours ...");
+				    		result.setTextFill(Color.BLUE);
 			            });
 			        }
 				}, period, millisecondes);
-				result.setText("Recherche terminée !");
-	    		result.setTextFill(Color.GREEN);
 			}
-			getDate();
         } catch (NullPointerException  | NumberFormatException  | IllegalStateException  e) {
         	LOG.severe("Erreur de saisie : "+ e.getMessage());
     		e.printStackTrace();

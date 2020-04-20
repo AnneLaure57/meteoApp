@@ -8,7 +8,7 @@ Pour pouvoir utiliser cette application, que vous soyez sur Linux, MAC OS ou Win
 
 ### Depuis le fichier source
 
-Il faut télécharger la distrubution source qui a été déposé sur Arche `TP2-CHARLES-0.0.1-SNAPSHOT-project.zip.`
+Il faut télécharger la distrubution source qui a été déposé sur Arche `TP3-CHARLES-0.0.1-SNAPSHOT-project.zip.`
 
 Voici l'arborescence du projet, une fois dézippé :
 
@@ -16,7 +16,17 @@ Voici l'arborescence du projet, une fois dézippé :
 
 ### Depuis GitHub
 
-//TODO
+Pour récupérer les fichiers sources depuis le dépôt GIT, il vous faut d'abord cloner ou télécharger sous format `zip` :
+
+#### Pour cloner en SSH
+
+</br>![Image not found](images/git_ssh.png "install")
+
+#### Pour cloner en HTTP
+
+</br>![Image not found](images/git_http.png "install")
+
+Il ne vous reste plus qu'à importer votre projet depuis un IDE tel que `Eclipse` ou `IntellJ` par exemple. 
 
 ###Arborescence
 
@@ -50,13 +60,6 @@ Vous pouvez également (marche en tout cas sur Windows), double-cliquez sur le f
 ### Sur Linux/Mac OS:
 
 #### Exécuter le fichier app avec la commande `sh`
-</br>![Image not found](images/install5.png "install")
-
-Ouverture de l'application :
-
-</br>![Image not found](images/install6.png "install")
-
-#### Exécuter le .jar 
 </br>![Image not found](images/install3.png "install")
 
 Ouverture de l'application :

@@ -2,7 +2,7 @@
 
 ##Nom du projet
 
-TP2 - Application de gestion du volumes d'eau dans une baignoire à l'aide des threads.
+TP3 - Météo App : une application de prévisions météo.
 
 ##Livrable
 
@@ -13,15 +13,14 @@ TP2 - Application de gestion du volumes d'eau dans une baignoire à l'aide des t
 
 ##Description de l'application
 
-Ce projet correspond au TP2 réalisé lors du cours de programation objet avancée en Master 1 MIAGE.
+Ce projet correspond au TP3 réalisé lors du cours de programation objet avancée en Master 1 MIAGE.
 
 L'application permet à partir de l'interface interactive (conçue en JAVA FX) de :
 
-* Régler le volume initiale de la baignoire,
-* Régler le volume d'eau ajouté (qteVerse),
-* Régler le vome d'eau retiré (qteFuite).
-
-L'objectif étant de calculer le temps que met une baignoire pour se remplir (le calcul a été fait en minutes et en secondes).
+* d'avoir la météo d'une ville pour le jour courant,
+* d'avoir les prévisions pour les 4 prochains jours,
+* de pouvoir rafraîchir les prévisions,
+* de pouvoir personnaliser l'affichage des données du jour courant.
 
 ##Auteur
 
