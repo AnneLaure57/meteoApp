@@ -23,6 +23,46 @@
     -fx-text-fill: #f7f7f7fd;
 }
 
+/*#addItem > .label {
+    -fx-graphic: url(images/add.png);
+}*/
+
+#addIcon > .label{
+    -fx-graphic: url(images/add.png);
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+#deleteIcon > .label{
+    -fx-graphic: url(images/delete.jpg);
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+#searchIcon > .label{
+    -fx-graphic: url(images/search.png);
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+#cleanIcon > .label{
+    -fx-graphic: url(images/clean.png);
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+#stopIcon > .label{
+    -fx-graphic: url(images/stop.png);
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+#exitIcon > .label{
+    -fx-graphic: url(images/exit.png);
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
 .pane{
     -fx-background-color: #52B2F2;
 }

@@ -95,5 +95,27 @@ public class TestsUnitaires {
     	String resultat = c.getApiKey();
 		assertEquals(apiKey,resultat);
 	}
+	
+	@Test
+	public void testTimer() {
+		Boolean timer = false;
+		WeatherController c = new WeatherController();
+		Boolean resultat = c.stateTimer();
+		assertEquals(timer,resultat);
+	}
+	
+	@Test
+	public void teststateCity() {
+		Boolean resultat = false;
+		WeatherController c = new WeatherController();
+		Boolean resAttendu = false;
+		assertTrue(resultat == resAttendu);
+	}
+	
+	@Test
+	public void teststateRefresh() {
+		Boolean resultat = false;
+		assertNotNull(resultat);
+	}
 
 }

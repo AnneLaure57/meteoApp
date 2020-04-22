@@ -33,11 +33,40 @@
                         <CheckMenuItem fx:id="menuTMi" mnemonicParsing="false" onAction="#display" text="Température Min" />
                   </items>
                 </Menu>
+                  <Menu fx:id="listCity" mnemonicParsing="false" text="Ma liste">
+                     <items>
+                        <Menu fx:id="select" mnemonicParsing="false" text="Sélectionner">
+                          <items>
+                            <MenuItem fx:id="menuTest" mnemonicParsing="false" onAction="#setCityResearch" text="Paris" />
+                          </items>
+                           <graphic>
+                              <ImageView fx:id="searchIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Menu>
+                        <MenuItem fx:id="addItem" mnemonicParsing="false" onAction="#addCityList" styleClass="add" text="Ajouter">
+                           <graphic>
+                              <ImageView fx:id="addIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></MenuItem>
+                        <Menu fx:id="deleteMenu" mnemonicParsing="false" text="Supprimer">
+                           <graphic>
+                              <ImageView fx:id="deleteIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></Menu>
+                     </items>
+                  </Menu>
                 <Menu fx:id="params" mnemonicParsing="false" text="Paramètres">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#clean" text="Nettoyer" />
-                        <MenuItem fx:id="stoppedI" mnemonicParsing="false" onAction="#stopAct" text="Actualisation arrêt" />
-                        <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#exitScene" text="Quitter" />
+                        <MenuItem mnemonicParsing="false" onAction="#clean" text="Nettoyer">
+                           <graphic>
+                              <ImageView fx:id="cleanIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="stoppedI" mnemonicParsing="false" onAction="#stopAct" text="Actualisation arrêt">
+                           <graphic>
+                              <ImageView fx:id="stopIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></MenuItem>
+                        <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#exitScene" text="Quitter">
+                           <graphic>
+                              <ImageView fx:id="exitIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></MenuItem>
                      </items></Menu>
               </menus>
             </MenuBar>
@@ -101,6 +130,7 @@
                               <String fx:value="btn" />
                            </styleClass>
                         </Button>
+                        <ImageView fx:id="refresh_icon" fitHeight="30.0" fitWidth="30.0" layoutX="267.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </children>

@@ -30,7 +30,6 @@ import javafx.scene.paint.Color;
 
 public class WeatherController {
 	
-	//List components
 	@FXML
 	private MenuBar mainItems;
 	
@@ -39,6 +38,21 @@ public class WeatherController {
 	
 	@FXML
 	private Menu disp;
+	
+	@FXML
+	private Menu listCity;
+	
+	@FXML
+	private Menu select;
+	
+	@FXML
+	private Menu deleteMenu;
+	
+	@FXML
+	private MenuItem menuTest;
+	
+	@FXML
+	private MenuItem addItem;
 	
 	@FXML
 	private MenuItem quit;
@@ -182,6 +196,9 @@ public class WeatherController {
     private ImageView imgMinMax;
     
     @FXML
+    private ImageView refresh_icon;
+    
+    @FXML
     private ImageView imgIcon2;
     
     @FXML
@@ -193,9 +210,29 @@ public class WeatherController {
     @FXML
     private ImageView imgIcon5;
     
+    @FXML
+    private ImageView addIcon;
+    
+    @FXML
+    private ImageView searchIcon;
+    
+    @FXML
+    private ImageView cleanIcon;
+    
+    @FXML
+    private ImageView deleteIcon;
+    
+    @FXML
+    private ImageView stopIcon;
+    
+    @FXML
+    private ImageView exitIcon;
+    
     private static final Logger LOG = Logger.getLogger(MeteoClient.class.getName());
     
     private MeteoClient cl;
+    
+    private String cityFound;
     
     private Result res;
     
@@ -224,10 +261,17 @@ public class WeatherController {
     	descrip3.setText("N/A");
     	descrip4.setText("N/A");
     	descrip5.setText("N/A");
+    	addIcon.setImage(new Image("images/add.png"));
+    	deleteIcon.setImage(new Image("images/delete.jpg"));
+    	searchIcon.setImage(new Image("images/search.png"));
+    	cleanIcon.setImage(new Image("images/clean.png"));
+    	stopIcon.setImage(new Image("images/stop.png"));
+    	exitIcon.setImage(new Image("images/exit.png"));
     	imgIcon2.setImage(new Image("images/not_available.png"));
     	imgIcon3.setImage(new Image("images/not_available.png"));
     	imgIcon4.setImage(new Image("images/not_available.png"));
     	imgIcon5.setImage(new Image("images/not_available.png"));
+    	refresh_icon.setImage(new Image("images/refresh_icon.png"));
     	/*other solution (Menu without MenuItem)
     	quit.setGraphic( ButtonBuilder.create().text("") .onAction(new EventHandler<ActionEvent>(){
     		@Override
@@ -235,53 +279,10 @@ public class WeatherController {
     	          System.exit(0);
     	           } }).build());*/
    	}
-    
-    @FXML 
-    void exitScene(ActionEvent event) {
-    	try {
-    		if (stateTimer()) {
-    			timer.cancel();
-    		}
-    		System.exit(0);
-    	} catch (Exception e) {
-    		LOG.severe("Erreur de saisie : "+ e.getMessage());
-    		e.printStackTrace();
-    	}
-    }
-    
-    @FXML 
-    void stopAct(ActionEvent event) {
-    	try {
-    		if (stateTimer() == true) {
-    			result.setText("Actualisation stoppée !");
-    			result.setTextFill(Color.BLUE);
-    			timer.cancel();
-    		}
-    	} catch (Exception e) {
-    		LOG.severe("Erreur de saisie : "+ e.getMessage());
-    		e.printStackTrace();
-    	}
-    }
-    
-    @FXML 
-    void clean(ActionEvent event) {
-    	initialize();
-    	temperature.setText("N/A");
-    	alterTemp.setText("N/A");
-    	wind.setText("N/A");
-    	humidity.setText("N/A");
-    	sunrise.setText("N/A");
-    	sunset.setText("N/A");
-    	tempMax.setText("N/A");
-    	tempMin.setText("N/A");
-    	pressure.setText("N/A");
-    	description.setText("N/A");
-    	imgTemp.setImage(new Image("images/not_available.png"));
-    }
-    
-    @FXML
+	
+	@FXML
     void display(ActionEvent event) {
-    	//TODO
+    	// To optimize : use observableList
     	menuH.setOnAction(e -> 
     	{
 	    	if (menuH.isSelected())
@@ -410,6 +411,90 @@ public class WeatherController {
 	    	}
     	});
     }
+	
+	@FXML 
+	void setCityResearch(ActionEvent event) {
+	    MenuItem currentMenu = (MenuItem) event.getSource();
+	    String currentCity = currentMenu.getText();
+	    checkCityName(currentCity);
+	}
+	
+	@FXML 
+	void addCityList(ActionEvent event) {
+		if (stateCity()) {
+			String nameCity = city.getText();
+			MenuItem newMenu = new MenuItem(nameCity);
+		    select.getItems().add(newMenu);
+		    addIntoDelete(nameCity);
+		    newMenu.setOnAction(e -> {
+		    	setCityResearch(e);
+		    });
+		}
+	}
+	
+	public void addIntoDelete(String nameCity) {
+		MenuItem newMenu = new MenuItem(nameCity);
+		deleteMenu.getItems().add(newMenu);
+		newMenu.setOnAction(e -> {
+			//newMenu.setDisable(true);
+			LOG.info("Nom du menu " + newMenu.getText());
+			for (int i = 0; i < select.getItems().size(); i++) {
+				//LOG.info("Je suis sur l'onglet " + i + " qui correspond "+ select.getItems().get(i).getText());
+				if (newMenu.getText().equals(select.getItems().get(i).getText())) {
+					//LOG.info("je supprime l'index " + i);
+					select.getItems().remove(i);
+				}
+			}
+			deleteMenu.getItems().remove(newMenu);
+	    });
+	}
+	
+	//TODO load
+	
+	//TODO save
+    
+    @FXML 
+    void exitScene(ActionEvent event) {
+    	try {
+    		if (stateTimer()) {
+    			timer.cancel();
+    		}
+    		System.exit(0);
+    	} catch (Exception e) {
+    		LOG.severe("Erreur de saisie : "+ e.getMessage());
+    		e.printStackTrace();
+    	}
+    }
+    
+    @FXML 
+    void stopAct(ActionEvent event) {
+    	try {
+    		if (stateTimer() == true) {
+    			result.setText("Actualisation stoppée !");
+    			result.setTextFill(Color.BLUE);
+    			timer.cancel();
+    		}
+    	} catch (Exception e) {
+    		LOG.severe("Erreur de saisie : "+ e.getMessage());
+    		e.printStackTrace();
+    	}
+    }
+    
+    @FXML 
+    void clean(ActionEvent event) {
+    	initialize();
+    	temperature.setText("N/A");
+    	alterTemp.setText("N/A");
+    	wind.setText("N/A");
+    	humidity.setText("N/A");
+    	sunrise.setText("N/A");
+    	sunset.setText("N/A");
+    	tempMax.setText("N/A");
+    	tempMin.setText("N/A");
+    	pressure.setText("N/A");
+    	description.setText("N/A");
+    	imgTemp.setImage(new Image("images/not_available.png"));
+    }
     
     public void hideMinMax() {
     	if (!tempMax.isVisible() && !tempMin.isVisible()) {
@@ -420,18 +505,19 @@ public class WeatherController {
     }
     
     public void checkTextFieldCity() {
-    	if (city.getText() == null || city.getText().trim().isEmpty()) {
+    	if (!stateCity()) {
     		result.setText("Veuillez saisir une ville !");
     		result.setTextFill(Color.RED);
     	} else {
-    		checkCityName();
+    		cityFound = city.getText();
+    		checkCityName(cityFound);
     	}
     }
     
-    public void checkCityName() {
-    	cl = new MeteoClient(city.getText());
+    public void checkCityName(String city) {
+    	cl = new MeteoClient(city);
       	res = cl.getWeatherByCityName();
-		LOG.info(cl.getJsonWeatherByCityName());
+		//LOG.info(cl.getJsonWeatherByCityName());
   
         if (res == null) {
         	LOG.severe("La ville que vous avez saisie n'existe pas");
@@ -569,6 +655,7 @@ public class WeatherController {
 		imgWeather.setImage(new Image("images/humidity.png"));
 		imgPres.setImage(new Image("images/pressure.png"));
 		
+		//LOG.info(cl.getCity());
 		displayPrevGUI();
 		
     }
@@ -638,13 +725,12 @@ public class WeatherController {
 	
 	public void displayPrevGUI() {
 		//For the rest
-		LOG.fine("Pour la ville" + city.getText());
-      	LOG.fine(cl.getJsonWeatherByCityNameFor5());
+		//LOG.info(cl.getCity());
+		//LOG.info(cl.getJsonWeatherByCityNameFor5());
       	
       	//JSONObject tomJsonObject = new JSONObject(cl.getJsonWeatherByCityNameFor5());
       	String jsonString = cl.getJsonWeatherByCityNameFor5() ; //assign your JSON String here
       	JSONObject obj = new JSONObject(jsonString);
-      	//System.out.println("Request : " + obj);
 		
       	//date
       	//other possibility : use dt_txt in list
@@ -679,17 +765,41 @@ public class WeatherController {
      * permet d'obtenir les températures associées à l'évènement météorologique
      * 
      * @return timerStart
-     * 		retourne l'état actuel du timer, false = le timer n'a pas démarré ou true = le timer est en route
+     * 		retourne un booléen, false = le timer n'a pas démarré ou true = le timer est en route
      */
 	
 	public boolean stateTimer() {
         return this.timerStart;
     }
-    
+	
+	/** 
+     * <b>stateCity</b> 
+     *retourne un booléen, false = le TextField est vide ou null sinon true
+     */
+	
+	public boolean stateCity(){
+		if (city.getText() == null || city.getText().trim().isEmpty()) {
+			return false;
+		}
+        return true;
+    }
+	
+	/** 
+     * <b>stateRefresh</b> 
+     *retourne un booléen, false = le TextField récupérant le nombres de minutes est vide ou null sinon true
+     */
+	
+	public boolean stateRefresh() {
+		if (refresh.getText() == null || refresh.getText().trim().isEmpty()) {
+			return false;
+		}
+        return true;
+    }
+	
 	@FXML
 	void reload(ActionEvent event) throws Exception{
 		try {
-			if (refresh.getText() == null || refresh.getText().trim().isEmpty() || city.getText() == null || city.getText().trim().isEmpty() || res == null) {
+			if (!stateRefresh() || !stateCity() || res == null) {
 				result.setText("Veuillez remplir tous les champs ! ");
 	    		result.setTextFill(Color.RED);
 			} else {
