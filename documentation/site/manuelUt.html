@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="CHARLES Anne-Laure">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Manuel d'utilisiation - Prévisions Météo</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Manuel d'utilisiation";
+    var mkdocs_page_input_path = "manuelUt.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Prévisions Météo</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Accueil</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="installation.html">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="manuelUt.html">Manuel d'utilisiation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#liste-des-fonctionnalites">Liste des Fonctionnalités</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#interface-de-lapplication-meteo">Interface de l'application Météo</a></li>
+        
+            <li><a class="toctree-l3" href="#les-messages-derreurs">Les messages d'erreurs</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="manuelTech.html">Manuel technique</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="licences.html">Licences</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="tests.html">Tests</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Prévisions Météo</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Manuel d'utilisiation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="liste-des-fonctionnalites">Liste des Fonctionnalités</h1>
+<h2 id="interface-de-lapplication-meteo">Interface de l'application Météo</h2>
+<p></br><img alt="Image not found" src="images/interface1.png" title="interface" /></p>
+<h3 id="1-chercher-les-previsions-pour-une-ville">1) Chercher les prévisions pour une ville</h3>
+<p>En rentrant le nom d'une ville, vous pouvez obtenir les prévisions du jour plus ceux des 4 prochains jours (l'api ne permet d'avoir que les prévisions des 5 prochains jours en version gratuite). Peu importe l'écriture (Majuscule ou minucule), tant que la ville est bien écrite, la recherche se déroulera sans problème, cliquez ensuite sur le bouton <em>Valider</em>.</p>
+<p></br><img alt="Image not found" src="images/interface2.png" title="interface" /></p>
+<h3 id="2-rafraichir-pour-obtenir-les-previsions-de-la-ville-toutes-les-x-minutes">2) Rafraîchir pour obtenir les prévisions de la ville toutes les X minutes</h3>
+<p>Il est possible de demander un rafraîchissement de l'interface toutes les X minutes.</p>
+<h4 id="rentrer-un-nombre">Rentrer un nombre :</h4>
+<p></br><img alt="Image not found" src="images/interface3.png" title="interface" /></p>
+<h4 id="cliquez-sur-le-bouton-actualiser">Cliquez sur le bouton "Actualiser" :</h4>
+<p></br><img alt="Image not found" src="images/interface4.png" title="interface" /></p>
+<h4 id="et-cest-parti">Et c'est parti !</h4>
+<p></br>Une fois que vous avez cliqué sur le bouton, un nouveau message s'affichera en vous indiquant qu'une nouvelle actualisation est en cours.</p>
+<p></br><img alt="Image not found" src="images/interface5.png" title="interface" /></p>
+<p>La date de mise à jour sera rafraîxhi toutes les X minutes.</p>
+<p><img alt="Image not found" src="images/interface6.png" title="interface" /></p>
+<h3 id="stopper-lactualisation">Stopper l'actualisation</h3>
+<p></br> Dans la barre de navigation, cliquez sur "paramètres" &gt; "Actualisation arrêt" pour stopper le timer. Vous aurez alors un message pour vous dire que vous avez bien stoppé l'actualisation comme ci-dessous :</p>
+<p><img alt="Image not found" src="images/interface7.png" title="interface" /></p>
+<h4 id="exemple">Exemple :</h4>
+<p><img alt="Image not found" src="images/interface8.png" title="interface" /></p>
+<h3 id="nettoyer-linterface">Nettoyer l'interface</h3>
+<p></br> Dans la barre de navigation, cliquez sur "paramètres" &gt; "Nettoyer" pour remettre à 0 l'application. Vous aurez alors un message pour vous dire que vous avez bien stoppé l'actualisation comme ci-dessous :</p>
+<p><img alt="Image not found" src="images/interface9.png" title="interface" /></p>
+<h3 id="3-personnaliser-laffichage">3) Personnaliser l'affichage</h3>
+<p></br> Vous pouvez à tout moment, vous pouvez dans le menu "Affichage" et définir les options à afficher :</p>
+<p><img alt="Image not found" src="images/interface10.png" title="interface" /></p>
+<ul>
+<li>Remarque : pour que l'image de thermomètre disparraisse, il faut que le températures max et min soient "Disable" toutes les deux.</li>
+</ul>
+<h4 id="exemple_1">Exemple :</h4>
+<p><img alt="Image not found" src="images/interface11.png" title="interface" /></p>
+<h4 id="exemple-pour-les-temperatures-minmax">Exemple pour les températures "MinMax" :</h4>
+<p><img alt="Image not found" src="images/interface12.png" title="interface" /></p>
+<h3 id="4-la-liste-personnalisee">4) La liste personnalisée</h3>
+<p></br> Dans le menu "Ma liste", il y a 3 options qui sont :</p>
+<ul>
+<li>Sélectionner</li>
+<li>Ajouter</li>
+<li>Supprimer</li>
+</ul>
+<p><code>Sélectionner</code> : permet depuis la liste de faire une recherche des prévisions météo d'une ville.</p>
+<p><code>Ajouter</code> : ajouter une ville dans la liste depuis un champ de texte.</p>
+<p><code>Supprimer</code>: supprimer une ville de la liste personnalisée.</p>
+<h4 id="selectionner">Sélectionner</h4>
+<p><img alt="Image not found" src="images/interface13.png" title="interface" /></p>
+<p><img alt="Image not found" src="images/interface14.png" title="interface" /></p>
+<h4 id="ajouter">Ajouter</h4>
+<p><img alt="Image not found" src="images/interface15.png" title="interface" /></p>
+<h4 id="supprimer">Supprimer</h4>
+<p><img alt="Image not found" src="images/interface16.png" title="interface" /></p>
+<ul>
+<li>Remarque : si une ville est supprimée, elle est supprimée définitivement de la sélection, il est possible de l'ajouter à nouveau.</li>
+</ul>
+<h2 id="les-messages-derreurs">Les messages d'erreurs</h2>
+<h3 id="pour-actualiser">Pour actualiser :</h3>
+<p><img alt="Image not found" src="images/interface17.png" title="interface" /></p>
+<p><img alt="Image not found" src="images/interface20.png" title="interface" /></p>
+<ul>
+<li>Remarque : le message s'active si les champs sont vides ou incorrectes. Si l'entrée pour le nombre de minutes n'est pas un entier alors l'actualisation n'aura pas lieu.</li>
+</ul>
+<h3 id="pour-valider">Pour valider :</h3>
+<p><img alt="Image not found" src="images/interface18.png" title="interface" /></p>
+<h3 id="pour-la-selection">Pour la séléction :</h3>
+<p><img alt="Image not found" src="images/interface19.png" title="interface" /></p>
+<ul>
+<li>Remarque : si une ville n'existe pas mais qu'elle est ajoutée à la liste, la recherche n'aura pas lieu quand même.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="manuelTech.html" class="btn btn-neutral float-right" title="Manuel technique">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="installation.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="manuelTech.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="CHARLES Anne-Laure">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Manuel technique - Prévisions Météo</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Manuel technique";
+    var mkdocs_page_input_path = "manuelTech.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Prévisions Météo</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Accueil</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="installation.html">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="manuelUt.html">Manuel d'utilisiation</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="manuelTech.html">Manuel technique</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#la-documentation-technique">La documentation technique:</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#les-outils">Les outils :</a></li>
+        
+            <li><a class="toctree-l3" href="#le-diagramme-de-classe">Le diagramme de classe :</a></li>
+        
+            <li><a class="toctree-l3" href="#design-patterns">Design Patterns</a></li>
+        
+            <li><a class="toctree-l3" href="#les-classes">Les classes :</a></li>
+        
+            <li><a class="toctree-l3" href="#view-windowfxml">View - Window.fxml</a></li>
+        
+            <li><a class="toctree-l3" href="#le-pom-xml">Le POM XML</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="licences.html">Licences</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="tests.html">Tests</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Prévisions Météo</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Manuel technique</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="la-documentation-technique">La documentation technique:</h1>
+<h2 id="les-outils">Les outils :</h2>
+<p></br> Pour ce projet j'ai travaillé avec les outils suivants :</p>
+<ul>
+<li>Scene Builder :outil permettant de réaliser des interfaces JavaFX (version 8).</li>
+<li>Eclipse : IDE pour la programmation Java (jdk 1.8_0241).</li>
+<li>Maven &amp; les plugins nécessaires pour générer les fichiers archives et le fichier binaire (inclus avec cette documentation).</li>
+<li>ObjeAid UML Diagramm : est un outil permettant de créer des diagrammes à partir d'Eclipse.</li>
+</ul>
+<h2 id="le-diagramme-de-classe">Le diagramme de classe :</h2>
+<p></br><img alt="Image not found" src="images/diagrammeClasse.png" title="applciation" /></p>
+<ul>
+<li>Au vue de la qualité de la photo, le diagramme est fournie avec les fichiers sources sous le nom de <code>diagramm_class.ucls</code>.</li>
+</ul>
+<h3 id="explications">Explications</h3>
+<p>Dans le diagramme, il y a les relations suivantes :</p>
+<ul>
+<li>Weather : association avec la classe MeteoClent et la classe Result.</li>
+<li>List : associations avec les classe Wind, Weather, Rain, Clouds, Sys et Main.</li>
+<li>Result : associations avec les classes Weather, Wind, Clouds, Coord, Sys et Main.</li>
+<li>Example : associations avec les classes Weather, List, City et Main.</li>
+<li>City : association avec la classe Coord.</li>
+</ul>
+<h2 id="design-patterns">Design Patterns</h2>
+<p>Afin de tester de nouvelles choses, j'ai utilisé le design pattern MVC (Modèle - Vue - Controller).</p>
+<h2 id="les-classes">Les classes :</h2>
+<p>En plus de cette documentation, les classes ont été commenté avec le plugin permettant la javadoc.</p>
+<h3 id="appjava">App.java</h3>
+<p>Cette classe est la classe principale permettant de lancer l'interface (Baignoire.fxml). Il y a deux méthodes :</p>
+<ul>
+<li>
+<p>start() : permettant de charger le fichier <em>.fxml</em>, de modifier le titre de la fenêtre (setTitle()), de spécifier le scène qui va être utilisé (setScene()), d'afficher la scène (commande show()). La taille de la fenêtre n'est pas modifiable (avec setResizable()), ceci évitant de modifier la taille de la fenêtre et l'affichage a été réalisé de la manière la plus simple possible afin de pouvoir l'afficher sur tous les types d'écran (15 pouces, 17 pouces, 19 pouces et inférieur).</p>
+</li>
+<li>
+<p>main() : qui permet de charger la fenêtre avec la commande <em>launch(args)</em> .</p>
+</li>
+</ul>
+<h3 id="model-meteoclientjava">Model - MeteoClient.java</h3>
+<p>La classe <strong>MeteoClient</strong> contient 6 paramètres :
+    * WEBSERVICE (String),
+    * lang (String),
+    * apiKey (String),
+    * city (String),
+    * country (String).</p>
+<p>Il y a plusieurs constructeurs ainsi que les getters et setters.</p>
+<ul>
+<li>
+<p>buildRequest : permet de construire une requête pour le jour actuel.</p>
+</li>
+<li>
+<p>getJsonWeatherByCityName : permet de se connecter à l'api pour obtenir le résultat de la requête pour un jour. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.</p>
+</li>
+<li>
+<p>getWeatherByCityName : permet construire la requête et d'accéder aux informations grâce à la classe <code>Result</code>.</p>
+</li>
+<li>
+<p>buildRequestFor5 : permet de construire une requête pour les prochains jours.</p>
+</li>
+<li>
+<p>getWeatherByCityNameFor5 : permet construire la requête et d'accéder aux informations grâce à la classe <code>Example</code>.</p>
+</li>
+<li>
+<p>getJsonWeatherByCityNameFor5 : permet de se connecter à l'api pour obtenir le résultat de la requête pour les prochins jours. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.</p>
+</li>
+</ul>
+<h3 id="controller-controllerjava">Controller - Controller.java</h3>
+<ul>
+<li>
+<p>initialize() :  est la fonction qui s'exécute lorsque la fenètre FXML se créée. Lors de l'initialisation, on affiche le contenu des labels et des Images en modifiant le contenu avec les méthodes <em>setText()</em> et <em>setImage()</em>.</p>
+</li>
+<li>
+<p>diplay (ActionEvent e) : pour chaque MenuItem du menu "Affichage", on cherche à savoir si le menuItem est sélectionné (utilisation de isSelected()) alors si le label est visible (utilisation de isVisible()) alors on le cache ainsi que son image avec la méthode <em>setVisible()</em>. Pour déclencher la méthode, on utilise la méthode <em>setOnAction()</em>.</p>
+</li>
+<li>
+<p>setCityResearch (ActionEvent e) : permet de d'afficher les prévisions pour une ville contenu dans le menu "sélectionner". On récupère le label du menuItem et on lance la méthode <em>checkCityName()</em>.</p>
+</li>
+<li>
+<p>addCityList (ActionEvent e) : si le TextField n'est pas vide, alors on ajoute via le menuItem "ajouter" la ville saisit dans le TextField au menu "sélectionner". Pour récupérer le contenu du textField, on utilise la méthode "getText()" puis pour l'ajouter on l'ajoute au menu concerné comme ceci :</p>
+</li>
+</ul>
+<p><strong> select.getItems().add(newMenu); </strong></p>
+<p>On ajoute également ce menuItem au menu "supprimer", pour pouvoir le retirer de la liste personnalisée. Au moment où la ville est ajoutée, on lui donne la possibilité de faire une recherche de prévisions pour la ville en question avec les méthodes <em>setOnAction()</em> et <em>setCityResearch()</em>.</p>
+<ul>
+<li>addIntoDelete (String nameCity) : cette methode permet de créer une nouvel menuItem pour le menu "supprimer" (en règle générale, il n'est pas possible d'affecter un noeud enfant à deux parents différents, il faut en créer un nouveau), on l'ajoute au menu, puis lorsque celui-ci est sélectionné, cela va entrainer la suppression du menu "supprimer" mais aussi du menu "sélectionner". Pour y arriver on utilise la méthode "setOnAction()" dans laquelle on a définit une boucle qui va parcourir le menu select et s'il contient la ville à supprimer alors on la retire avec la méthode <em>remove()</em> comme ceci :</li>
+</ul>
+<p><strong> select.getItems().remove(i); </strong></p>
+<ul>
+<li>
+<p>exitScene (ActionEvent e) : permet de quitter la scène et de stopper le timer si celui-ci est en cours et n'a pas été stoppé avec la méthode <em>stopAct()</em>.</p>
+</li>
+<li>
+<p>stopAct (ActionEvent e) : permet de stopper le timer si celui-ci est en cours, on affiche alors un message afin d'avertir l'utilisateur. Pour stopper le timer, on utilise la méthode "cancel()".</p>
+</li>
+<li>
+<p>clean (ActionEvent e) : permet de réinitialiser l'ensemble de l'interface.</p>
+</li>
+<li>
+<p>hideMinMax () : cette méthode est utilisé dans la méthode <em>display()</em>, elle permet de cacher l'image des températures Max et Min si les deux sont invisibles sinon si l'un des deux est encore affichée, alors l'image reste visible.</p>
+</li>
+<li>
+<p>checkTextFieldCity () : cette méthode permet de vérifier si le textField n'est pas vide (renvoie un message d'erreur sinon) si on récupère le contenu et on appelle la méthode "checkCityName()".</p>
+</li>
+<li>
+<p>checkCityName (String city) : on crée une nouvelle instance de la classe MeteoCLient et on lui passe dans le contructeur la ville. Si le résultat aboutit à une requête non null alors on appelle la méthode "displayGUI()" sion on affiche un message d'erreur via l'interface avec le label <code>result</code>. On met à jour l'action en modifiant le label <code>lastUpdate</code> avec la méthode <em>getDate()</em>.</p>
+</li>
+<li>
+<p>valider (ActionEvent e) : cette méthode est utilisé pour déchencher l'action lorsque l'on appuie sur le bouton 'Valider'. Cette méthode appelle <code>checkTextFieldCity()</code> qui va appeller d'autres méthodes, s'il y a une erreur, on l'affiche en console.</p>
+</li>
+<li>
+<p>getTemp (Float nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un float. </p>
+</li>
+<li>
+<p>getTempDouble (Double nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un double. </p>
+</li>
+<li>
+<p>getDate () : cette méthode permet de récupéré la date du jour et d'afficher l'heure pour indiquer la dernière mise à jour.</p>
+</li>
+<li>
+<p>addDays (int nbDays) : permet d'obtenir les dates des jours suivants le jour actuel et de les afficher dans les 'conteneurs' pour les prévisions des jours suivants.</p>
+</li>
+<li>
+<p>getTimeSun (long time) : permet d'obtenir sous format d'heures et minutes, le coucher et le lever du soleil.</p>
+</li>
+<li>
+<p>displayGUI (Result res) : à partir de la requête, on va pouvoir récupérer depuis la classe Result, les informations de la requête tel que le vent, les températures, la pression etc. On affiche également les îcones en lien avec les données qui sont dans le repertoire <code>/resources/images/</code>.</p>
+</li>
+<li>
+<p>getIcon (int nbIcon, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant le nom de l'icône. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont le nom de l'icône nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>icon</code> dans une string.</p>
+</li>
+<li>
+<p>getDesciption (int nbDesc, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant la description. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont la description nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>description</code> dans une string.</p>
+</li>
+<li>
+<p>getTempMaxMin (int nbDesc, JSONObject obj, String temp_string) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner un double contenant la température. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, un objet <code>main</code>qui va permettre de retrouner un double à partir de s'il s'agit de la température max, min, ressentie.</p>
+</li>
+<li>
+<p>displayPrevGUI ()  : permet d'afficher les prévisions des prochains jours. On utilise les méthodes <em>addDays()</em>, <em>getTempDOuble()</em>, <em>getTempMaxMin()</em>, <em>getDescription()</em>, <em>getIcon()</em>.</p>
+</li>
+</ul>
+<h4 id="exemple">Exemple :</h4>
+<ul>
+<li>date2.setText("J+1 : " + addDays(1)); *</li>
+<li>temp2.setText(getTempDouble(getTempMaxMin(8,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(8,obj,"temp_max"), true) + "°C"); *</li>
+<li>descrip2.setText(getDesciption(8,obj)); *</li>
+<li>
+<p>imgIcon2.setImage(new Image("images/" + getIcon(8,obj) +".png")); *</p>
+</li>
+<li>
+<p>stateTimer ()  : retourne l'état du timer (booléen).</p>
+</li>
+<li>
+<p>stateCity ()  : retourne un booléen pour indiquer si le textField devant récupérer la ville est vide ou pas.</p>
+</li>
+<li>
+<p>stateRefresh ()  : retourne un booléen pour indiquer si le textField devant récupérer le nombre est vide ou pas.</p>
+</li>
+<li>
+<p>reload (ActionEvent event)  : permet de démarrer un timer qui va récupérer un nombre en minutes qui va être converti en millisecondes. On déclenche alors un thread (une tâche ou TimerTask), qui va rechargé les informations de l'interface, mettre à jour la maj tout les X minutes. Auquel cas, on retourne une Exception avec le message d'erreur (nombre invalide, saisir les deux champs etc). Afin que l'interface ne lague pas, on utilise la méthode <em>runLater()</em> qui permet de rafraîchir plus tard l'interface et de ne pas créer d'exception lié au Thread.</p>
+</li>
+</ul>
+<h3 id="json">JSON</h3>
+<ul>
+<li>À partir de la requête JSON (getJsonWeatherByCityName() et getJsonWeatherByCityNameFor5()), on peut générér les classes qui nous permettent d'accéder directement aux élements sans avoir besoin de parser en JSON la requête (j'ai dû réalisé quand même la manoeuvre pour les prévisions des jours suivants). Nous obtenons les classes suivantes :
+</br>
+</br></li>
+<li>City</li>
+<li>Clouds</li>
+<li>Coord</li>
+<li>Example</li>
+<li>List</li>
+<li>Main</li>
+<li>Rain</li>
+<li>Result</li>
+<li>Sys</li>
+<li>Weather</li>
+<li>Wind</li>
+</ul>
+<p>Ces classes comportent essentiellement des getters et des setters permettant d'accéder aux contenus de la requête, comme par exemple :</p>
+<p>Dans la classe Result, on peut d'accéder au contenu de Main avec la méthode <em>getMain()</em> depuis cette méthode, récupérer par exemple l'humidité avec la méthode <em>getHumidity()</em>.</p>
+<h2 id="view-windowfxml">View - Window.fxml</h2>
+<p></br> Il s'agit d'une fenêtre <em>.fmxl</em> crée à partir du logiciel <strong>SceneBuilder</strong> depuis <strong>Eclipse</strong>.</p>
+<p></br><img alt="Image not found" src="images/scene.png" title="applciation" /></p>
+<p>Afin de positionner les élements, j'ai utilisé une VBox, un SplitPane et des AnchorPanes.</p>
+<p>Les différents éléments de l'interface :</p>
+<ul>
+<li>Menubar comprenant 3 menus : affichage, ma liste, paramètres.
+<strong> Affichage : humidité (MenuItem), pression (MenuItem), vent (MenuItem), température Max (MenuItem), température Min (MenuItem), ressentie (MenuItem), lever (MenuItem), coucher (MenuItem).
+</strong> Ma liste : sélectionner (Menu), ajouter (MenuItem), supprimer (Menu).
+** Paramètres : nettoyer (MenuItem), actualisation arrêt (MenuItem), quitter (MenuItem).</li>
+<li>Button <code>Valider</code> : permet d'avoir les prévisions pour la ville renseignée.</li>
+<li>Button <code>Actualiser</code> : permet d'actualiser toutes les X minutes l'interface.</li>
+<li>TextField <code>city</code> : permet de renseigner la ville.</li>
+<li>TextField <code>refresh</code> : permet de renseigner le nombre de minutes.</li>
+<li>label <code>lastUpdate</code> : permet de retourner la date et l'heure de la dernière action.</li>
+<li>label <code>result</code> : retourne un message pour indiquer si la recherche s'est bien passé ou un message d'erreur.</li>
+</ul>
+<h3 id="pour-les-previsions-du-jour">Pour les prévisions du jour</h3>
+<ul>
+<li>label <code>cityCountry</code> : affiche la ville et le pays à partir du TextField.</li>
+<li>label <code>temperature</code> : affiche la température.</li>
+<li>label <code>description</code> : affiche la description de la météo.</li>
+<li>label <code>tempMax</code> : affiche la température maximale.</li>
+<li>label <code>tempMin</code> : affiche la température minimale.</li>
+<li>label <code>humidity</code> : affiche le taux d'humidité.</li>
+<li>label <code>wind</code> : affiche la vitesse du vent (en m/s).</li>
+<li>label <code>sunrise</code> : affiche l'heure de lever du soleil.</li>
+<li>label <code>sunset</code> : affiche l'heure du coucher du soleil.</li>
+<li>label <code>pressure</code> : affiche la pression en hPa.</li>
+<li>
+<p>label <code>alterTemp</code> : affiche la température ressentie.</p>
+</li>
+<li>
+<p>ImageView <code>imgMinMax</code> : image en lien avec les températures max et min.</p>
+</li>
+<li>ImageView <code>imgTemp</code> : image en lien avec l'icon de la requête.</li>
+<li>ImageView <code>imgWind</code> : image en lien avec le vent.</li>
+<li>ImageView <code>imgSunrise</code> : image en lien avec le lever du soleil.</li>
+<li>ImageView <code>imgSunset</code> : image en lien avec le coucher du soleil.</li>
+<li>ImageView <code>imgWeather</code> : image en lien avec l'humidité.</li>
+<li>ImageView <code>imgAlter</code> : image en lien avec la température ressentie.</li>
+<li>ImageView <code>imgPres</code> : image en lien avec la pression.</li>
+</ul>
+<h3 id="pour-les-previsions-sur-4-jours">Pour les prévisions sur 4 jours :</h3>
+<p>Il s'agit de 4 Anchorpanes avec chacun contenant :</p>
+<ul>
+<li>label <code>dateX</code> : la date du jour +X.</li>
+<li>label <code>tempX</code> : la température du jour +X.</li>
+<li>ImageView <code>imgIconX</code> : l'icon du jour +X.</li>
+<li>label <code>descrpX</code> : la description de la météo +X.</li>
+</ul>
+<h2 id="le-pom-xml">Le POM XML</h2>
+<p></br> Le pom.xml contient le modèle objet pour ce projet. Il contient toutes les informations importantes sur ce projet. Il permet de référencer le groupId, artifactId, version, nom, description, etc. Mais également d'y ajouter des plugins et dépendances pour compiler les ressources du projet permettant d'obtenir le <em>.bat</em> ou encore la possibilité de générer des archives (.zip,.rar) avec un <em>.Jar</em>.</p>
+<ul>
+<li>
+<p>Dans le POM.XML, l'encondage est définie en UTF-8, défini dans <code>properties</code> :</p>
+</li>
+<li>
+<p><img alt="Image not found" src="images/pom.png" title="applciation" /></p>
+</li>
+<li>
+<p>Dans le POM.XML, la version de Java, définie dans <code>dependencies</code> :</p>
+</li>
+<li>
+<p><img alt="Image not found" src="images/pom1.png" title="applciation" /></p>
+</li>
+</ul>
+<p>Les dépendances ci-dessus permettent de lire et récupérer les informations des requêtes JSON.</p>
+<ul>
+<li>
+<p><img alt="Image not found" src="images/pom2.png" title="applciation" /></p>
+</li>
+<li>
+<p>Ce plugin permet de générer automatiquement la distribution binaire du projet, dans le dossier <em>scripts</em> à la racine du projet. Cette génération est fixée à l'étape package de <code>Maven</code>.</p>
+</li>
+<li>
+<p><img alt="Image not found" src="images/pom3.png" title="applciation" /></p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="licences.html" class="btn btn-neutral float-right" title="Licences">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="manuelUt.html" class="btn btn-neutral" title="Manuel d'utilisiation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="manuelUt.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="licences.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>

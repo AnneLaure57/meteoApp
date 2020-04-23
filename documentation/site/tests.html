@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="CHARLES Anne-Laure">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Tests - Prévisions Météo</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Tests";
+    var mkdocs_page_input_path = "tests.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Prévisions Météo</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Accueil</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="installation.html">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="manuelUt.html">Manuel d'utilisiation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="manuelTech.html">Manuel technique</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="licences.html">Licences</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="tests.html">Tests</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#liste-des-tests-unitaires">Liste des tests unitaires</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#test-sur-testtemp">Test sur testTemp()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-testtempdouble">Test sur testTempDouble()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-testdate">Test sur testDate()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-testtempsun">Test sur testTempSun()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-testcity">Test sur testCity()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-testcountry">Test sur testCountry()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-testapikey">Test sur testApiKey()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-testtimer">Test sur testTimer()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-teststatecity">Test sur testStateCity()</a></li>
+        
+            <li><a class="toctree-l3" href="#test-sur-teststaterefresh">Test sur testStateRefresh()</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Prévisions Météo</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Tests</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="liste-des-tests-unitaires">Liste des tests unitaires</h1>
+<p>Les tests unitaires se trouve dans le dossier source, vous pouvez consulter le fichier <code>TestsUnitaires.java</code> depuis <code>src/test/java</code>. Veuillez vous assurer que vous pouvez utiliser <code>JUnit</code> sur votre IDE auquel cas référez vous à la documentation de votre IDE.</p>
+<h2 id="test-sur-testtemp">Test sur testTemp()</h2>
+<p></br> On cherche à vérifier si la température calculée avec la méthode <em>getTemp()</em> est bien égale à la température donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-testtempdouble">Test sur testTempDouble()</h2>
+<p></br> On cherche à vérifier si la température calculée avec la méthode <em>getTempDouble()</em> est bien égale à la température donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-testdate">Test sur testDate()</h2>
+<p></br> On cherche à vérifier si la date calculée avec la méthode <em>addDays()</em> est bien égale au résultat trouvé sans la méthode. On utilise la méthode <em>assertFalse()</em> permet de vérifier que les deux résultats ne sont pas les mêmes, car le résultat attendu correspond à une date statique et l'autre donne la date du jour actuelle, donc si on ajoute 0 jours, alors les deux dates doivent être différentes.</p>
+<h2 id="test-sur-testtempsun">Test sur testTempSun()</h2>
+<p></br> On cherche à vérifier si l'heure calculée avec la méthode <em>getTimeSun()</em> est bien égale à l'heure donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-testcity">Test sur testCity()</h2>
+<p></br> On cherche à vérifier si la ville trouvée avec la méthode <em>getCity()</em> est bien la même ville que celle initialisée. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-testcountry">Test sur testCountry()</h2>
+<p></br> On cherche à vérifier si le pays trouvé avec la méthode <em>getCountry()</em> est bien le même pays que celui initialisé. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-testapikey">Test sur testApiKey()</h2>
+<p></br> On cherche à vérifier si la ville trouvée avec la méthode <em>getApiKey()</em> est bien la même clé que celle initialisée. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-testtimer">Test sur testTimer()</h2>
+<p></br> On cherche à vérifier si le booléen retourné avec la méthode <em>stateTimer()</em>correspond à celui attendu.On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-teststatecity">Test sur testStateCity()</h2>
+<p></br> On cherche à vérifier si le booléen retourné avec la méthode <em>stateCity()</em>correspond à celui attendu.On utilise la méthode <em>assertTrue()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<h2 id="test-sur-teststaterefresh">Test sur testStateRefresh()</h2>
+<p></br> On cherche à vérifier si le booléen retourné avec la méthode <em>stateRefresh()</em>correspond à celui attendu.On utilise la méthode <em>assertNotNull()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="licences.html" class="btn btn-neutral" title="Licences"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="licences.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
