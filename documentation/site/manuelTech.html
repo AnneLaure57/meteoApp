@@ -84,6 +84,8 @@
         
             <li><a class="toctree-l3" href="#le-pom-xml">Le POM XML</a></li>
         
+            <li><a class="toctree-l3" href="#ameliorations-possibles">Améliorations possibles</a></li>
+        
         </ul>
     
 
@@ -136,7 +138,7 @@
 <h2 id="les-outils">Les outils :</h2>
 <p></br> Pour ce projet j'ai travaillé avec les outils suivants :</p>
 <ul>
-<li>Scene Builder :outil permettant de réaliser des interfaces JavaFX (version 8).</li>
+<li>Scene Builder : outil permettant de réaliser des interfaces JavaFX (version 8).</li>
 <li>Eclipse : IDE pour la programmation Java (jdk 1.8_0241).</li>
 <li>Maven &amp; les plugins nécessaires pour générer les fichiers archives et le fichier binaire (inclus avec cette documentation).</li>
 <li>ObjeAid UML Diagramm : est un outil permettant de créer des diagrammes à partir d'Eclipse.</li>
@@ -170,12 +172,14 @@
 </li>
 </ul>
 <h3 id="model-meteoclientjava">Model - MeteoClient.java</h3>
-<p>La classe <strong>MeteoClient</strong> contient 6 paramètres :
-    * WEBSERVICE (String),
-    * lang (String),
-    * apiKey (String),
-    * city (String),
-    * country (String).</p>
+<p>La classe <strong>MeteoClient</strong> contient 6 paramètres :</p>
+<ul>
+<li>WEBSERVICE (String),</li>
+<li>lang (String),</li>
+<li>apiKey (String),</li>
+<li>city (String),</li>
+<li>country (String).</li>
+</ul>
 <p>Il y a plusieurs constructeurs ainsi que les getters et setters.</p>
 <ul>
 <li>
@@ -185,7 +189,7 @@
 <p>getJsonWeatherByCityName : permet de se connecter à l'api pour obtenir le résultat de la requête pour un jour. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.</p>
 </li>
 <li>
-<p>getWeatherByCityName : permet construire la requête et d'accéder aux informations grâce à la classe <code>Result</code>.</p>
+<p>getWeatherByCityName : permet construire la requête et d'accéder aux informations grâce à la classe <code>Result</code>. La langue a également été modifié afin d'avoir les noms des villes et pays en français.</p>
 </li>
 <li>
 <p>buildRequestFor5 : permet de construire une requête pour les prochains jours.</p>
@@ -199,104 +203,99 @@
 </ul>
 <h3 id="controller-controllerjava">Controller - Controller.java</h3>
 <ul>
-<li>
-<p>initialize() :  est la fonction qui s'exécute lorsque la fenètre FXML se créée. Lors de l'initialisation, on affiche le contenu des labels et des Images en modifiant le contenu avec les méthodes <em>setText()</em> et <em>setImage()</em>.</p>
-</li>
-<li>
-<p>diplay (ActionEvent e) : pour chaque MenuItem du menu "Affichage", on cherche à savoir si le menuItem est sélectionné (utilisation de isSelected()) alors si le label est visible (utilisation de isVisible()) alors on le cache ainsi que son image avec la méthode <em>setVisible()</em>. Pour déclencher la méthode, on utilise la méthode <em>setOnAction()</em>.</p>
-</li>
-<li>
-<p>setCityResearch (ActionEvent e) : permet de d'afficher les prévisions pour une ville contenu dans le menu "sélectionner". On récupère le label du menuItem et on lance la méthode <em>checkCityName()</em>.</p>
-</li>
-<li>
-<p>addCityList (ActionEvent e) : si le TextField n'est pas vide, alors on ajoute via le menuItem "ajouter" la ville saisit dans le TextField au menu "sélectionner". Pour récupérer le contenu du textField, on utilise la méthode "getText()" puis pour l'ajouter on l'ajoute au menu concerné comme ceci :</p>
-</li>
+<li>initialize() :  est la fonction qui s'exécute lorsque la fenètre FXML se créée. Lors de l'initialisation, on affiche le contenu des labels et des Images en modifiant le contenu avec les méthodes <em>setText()</em> et <em>setImage()</em>.
+<br /><br /></li>
+<li>diplay (ActionEvent e) : pour chaque MenuItem du menu "Affichage", on cherche à savoir si le menuItem est sélectionné (utilisation de isSelected()) alors si le label est visible (utilisation de isVisible()) alors on le cache ainsi que son image avec la méthode <em>setVisible()</em>. Pour déclencher la méthode, on utilise la méthode <em>setOnAction()</em>.
+<br /><br /></li>
+<li>setCityResearch (ActionEvent e) : permet de d'afficher les prévisions pour une ville contenu dans le menu "sélectionner". On récupère le label du menuItem et on lance la méthode <em>checkCityName()</em>.
+<br /><br /></li>
+<li>addCityList (ActionEvent e) : si le TextField ville n'est pas vide, on vérifie si celui du pays est vide, s'il est vide on récupère le texte avec la méthode <em>getText()</em> sinon on concat la string récupérée depuis le TextField ville et celui du pays afin de n'en former plus qu'une seule :
+<br />
+<strong> nameResearch = nameCity + ',' + nameCountry; </strong>
+<br />
+On  utilse la méthode <em>addIntoDelete(string)</em> pour l'ajouter au menu "supprimer". afin d'éviter les doublons, on parcours la liste de menuItems et on vérifie que le dernier élément est bien différent de celui qu'on souhaite ajouter auquel cas, le nouveau menuItem ne sera pas créer sinon on l'ajoute au menu "sélectionner". Pour récupérer le contenu du textField, on utilise la méthode "getText()" puis pour l'ajouter on l'ajoute au menu concerné comme ceci :</li>
 </ul>
-<p><strong> select.getItems().add(newMenu); </strong></p>
-<p>On ajoute également ce menuItem au menu "supprimer", pour pouvoir le retirer de la liste personnalisée. Au moment où la ville est ajoutée, on lui donne la possibilité de faire une recherche de prévisions pour la ville en question avec les méthodes <em>setOnAction()</em> et <em>setCityResearch()</em>.</p>
+<pre><code>for (int i = 0; i &lt;= select.getItems().size() ; ++i) {
+    //If the last element isn't not the same the new insert
+    if (stateMenu(select,i,nameResearch) == true) {
+        //LOG.info(newMenu.getText() + &quot; on ajoute dans select&quot;);
+        select.getItems().add(newMenu);
+    }
+}
+</code></pre>
+
+<p>On ajoute également ce menuItem au menu "supprimer", pour pouvoir le retirer de la liste personnalisée. Au moment où la ville est ajoutée, on lui donne la possibilité de faire une recherche de prévisions pour la ville en question avec les méthodes <em>setOnAction()</em> et <em>setCityResearch()</em>.
+<br /></p>
 <ul>
-<li>addIntoDelete (String nameCity) : cette methode permet de créer une nouvel menuItem pour le menu "supprimer" (en règle générale, il n'est pas possible d'affecter un noeud enfant à deux parents différents, il faut en créer un nouveau), on l'ajoute au menu, puis lorsque celui-ci est sélectionné, cela va entrainer la suppression du menu "supprimer" mais aussi du menu "sélectionner". Pour y arriver on utilise la méthode "setOnAction()" dans laquelle on a définit une boucle qui va parcourir le menu select et s'il contient la ville à supprimer alors on la retire avec la méthode <em>remove()</em> comme ceci :</li>
+<li>
+<p>stateMenu (Menu menuCheck,int i, String newAddResearch) : cette fonciton retourne un booléen, initialisé à faux (false). On stock le dernier élément de la liste du menu (select ou delete). Si l'élement est bien différent du dernier qui a été ajouté, alors on retourne true, sinon cela reste à false.
+<br /><br /></p>
+</li>
+<li>
+<p>addIntoDelete (String nameCity) : cette methode permet de créer une nouvel menuItem pour le menu "supprimer" (en règle générale, il n'est pas possible d'affecter un noeud enfant à deux parents différents, il faut en créer un nouveau), on l'ajoute au menu (même principe que pour l'ajouter au menu "sélectionner" avec vérification qu'il n'y ai pas de doublons). Lorsque celui-ci est sélectionné, cela va entrainer la suppression du menu "supprimer" mais aussi du menu "sélectionner". Pour y arriver on utilise la méthode "setOnAction()" dans laquelle on a définit une boucle qui va parcourir le menu select et s'il contient la ville à supprimer alors on la retire avec la méthode <em>remove()</em> comme ceci :
+<br />
+<strong> select.getItems().remove(i); </strong>
+<br /><br /></p>
+</li>
+<li>
+<p>exitScene (ActionEvent e) : permet de quitter la scène et de stopper le timer si celui-ci est en cours et n'a pas été stoppé avec la méthode <em>stopAct()</em>.
+<br /><br /></p>
+</li>
+<li>
+<p>stopAct (ActionEvent e) : permet de stopper le timer si celui-ci est en cours, on affiche alors un message afin d'avertir l'utilisateur. Pour stopper le timer, on utilise la méthode "cancel()".
+<br /><br /></p>
+</li>
+<li>
+<p>clean (ActionEvent e) : permet de réinitialiser l'ensemble de l'interface.
+<br /><br /></p>
+</li>
+<li>hideMinMax () : cette méthode est utilisé dans la méthode <em>display()</em>, elle permet de cacher l'image des températures Max et Min si les deux sont invisibles sinon si l'un des deux est encore affichée, alors l'image reste visible.
+<br /><br /></li>
+<li>checkTextFieldCity () : cette méthode permet de vérifier si le textField n'est pas vide (renvoie un message d'erreur sinon) si on récupère le contenu et on appelle la méthode "checkCityName()".
+<br /><br /></li>
+<li>checkCityName (String city) : on crée une nouvelle instance de la classe MeteoCLient et on lui passe dans le contructeur la ville. Si le résultat aboutit à une requête non null alors on appelle la méthode "displayGUI()" sion on affiche un message d'erreur via l'interface avec le label <code>result</code>. On met à jour l'action en modifiant le label <code>lastUpdate</code> avec la méthode <em>getDate()</em>.
+<br /><br /></li>
+<li>valider (ActionEvent e) : cette méthode est utilisé pour déchencher l'action lorsque l'on appuie sur le bouton 'Valider'. Cette méthode appelle <code>checkTextFieldCity()</code> qui va appeller d'autres méthodes, s'il y a une erreur, on l'affiche en console.
+<br /><br /></li>
+<li>getTemp (Float nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un float. 
+<br /><br /></li>
+<li>getTempDouble (Double nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un double. 
+<br /><br /></li>
+<li>getDate () : cette méthode permet de récupéré la date du jour et d'afficher l'heure pour indiquer la dernière mise à jour.
+<br /><br /></li>
+<li>addDays (int nbDays) : permet d'obtenir les dates des jours suivants le jour actuel et de les afficher dans les 'conteneurs' pour les prévisions des jours suivants.
+<br /><br /></li>
+<li>getTimeSun (long time) : permet d'obtenir sous format d'heures et minutes, le coucher et le lever du soleil.
+<br /><br /></li>
+<li>displayGUI (Result res) : à partir de la requête, on va pouvoir récupérer depuis la classe Result, les informations de la requête tel que le vent, les températures, la pression etc. On affiche également les îcones en lien avec les données qui sont dans le repertoire <code>/resources/images/</code>.
+<br /><br /></li>
+<li>getIcon (int nbIcon, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant le nom de l'icône. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont le nom de l'icône nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>icon</code> dans une string.
+<br /><br /></li>
+<li>getDesciption (int nbDesc, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant la description. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont la description nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>description</code> dans une string.
+<br /><br /></li>
+<li>getTempMaxMin (int nbDesc, JSONObject obj, String temp_string) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner un double contenant la température. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, un objet <code>main</code>qui va permettre de retrouner un double à partir de s'il s'agit de la température max, min, ressentie.
+<br /><br /></li>
+<li>displayPrevGUI ()  : permet d'afficher les prévisions des prochains jours. On utilise les méthodes <em>addDays()</em>, <em>getTempDOuble()</em>, <em>getTempMaxMin()</em>, <em>getDescription()</em>, <em>getIcon()</em>.
+<strong> Exemple : </strong></li>
 </ul>
-<p><strong> select.getItems().remove(i); </strong></p>
+<pre><code>date2.setText(&quot;J+1 : &quot; + addDays(1)); *
+temp2.setText(getTempDouble(getTempMaxMin(8,obj,&quot;feels_like&quot;), true) + &quot;°C/&quot; + getTempDouble(getTempMaxMin(8,obj,&quot;temp_max&quot;), true) + &quot;°C&quot;); *
+descrip2.setText(getDesciption(8,obj)); *
+imgIcon2.setImage(new Image(&quot;images/&quot; + getIcon(8,obj) +&quot;.png&quot;)); *
+</code></pre>
+
 <ul>
-<li>
-<p>exitScene (ActionEvent e) : permet de quitter la scène et de stopper le timer si celui-ci est en cours et n'a pas été stoppé avec la méthode <em>stopAct()</em>.</p>
-</li>
-<li>
-<p>stopAct (ActionEvent e) : permet de stopper le timer si celui-ci est en cours, on affiche alors un message afin d'avertir l'utilisateur. Pour stopper le timer, on utilise la méthode "cancel()".</p>
-</li>
-<li>
-<p>clean (ActionEvent e) : permet de réinitialiser l'ensemble de l'interface.</p>
-</li>
-<li>
-<p>hideMinMax () : cette méthode est utilisé dans la méthode <em>display()</em>, elle permet de cacher l'image des températures Max et Min si les deux sont invisibles sinon si l'un des deux est encore affichée, alors l'image reste visible.</p>
-</li>
-<li>
-<p>checkTextFieldCity () : cette méthode permet de vérifier si le textField n'est pas vide (renvoie un message d'erreur sinon) si on récupère le contenu et on appelle la méthode "checkCityName()".</p>
-</li>
-<li>
-<p>checkCityName (String city) : on crée une nouvelle instance de la classe MeteoCLient et on lui passe dans le contructeur la ville. Si le résultat aboutit à une requête non null alors on appelle la méthode "displayGUI()" sion on affiche un message d'erreur via l'interface avec le label <code>result</code>. On met à jour l'action en modifiant le label <code>lastUpdate</code> avec la méthode <em>getDate()</em>.</p>
-</li>
-<li>
-<p>valider (ActionEvent e) : cette méthode est utilisé pour déchencher l'action lorsque l'on appuie sur le bouton 'Valider'. Cette méthode appelle <code>checkTextFieldCity()</code> qui va appeller d'autres méthodes, s'il y a une erreur, on l'affiche en console.</p>
-</li>
-<li>
-<p>getTemp (Float nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un float. </p>
-</li>
-<li>
-<p>getTempDouble (Double nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un double. </p>
-</li>
-<li>
-<p>getDate () : cette méthode permet de récupéré la date du jour et d'afficher l'heure pour indiquer la dernière mise à jour.</p>
-</li>
-<li>
-<p>addDays (int nbDays) : permet d'obtenir les dates des jours suivants le jour actuel et de les afficher dans les 'conteneurs' pour les prévisions des jours suivants.</p>
-</li>
-<li>
-<p>getTimeSun (long time) : permet d'obtenir sous format d'heures et minutes, le coucher et le lever du soleil.</p>
-</li>
-<li>
-<p>displayGUI (Result res) : à partir de la requête, on va pouvoir récupérer depuis la classe Result, les informations de la requête tel que le vent, les températures, la pression etc. On affiche également les îcones en lien avec les données qui sont dans le repertoire <code>/resources/images/</code>.</p>
-</li>
-<li>
-<p>getIcon (int nbIcon, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant le nom de l'icône. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont le nom de l'icône nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>icon</code> dans une string.</p>
-</li>
-<li>
-<p>getDesciption (int nbDesc, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant la description. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont la description nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>description</code> dans une string.</p>
-</li>
-<li>
-<p>getTempMaxMin (int nbDesc, JSONObject obj, String temp_string) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner un double contenant la température. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, un objet <code>main</code>qui va permettre de retrouner un double à partir de s'il s'agit de la température max, min, ressentie.</p>
-</li>
-<li>
-<p>displayPrevGUI ()  : permet d'afficher les prévisions des prochains jours. On utilise les méthodes <em>addDays()</em>, <em>getTempDOuble()</em>, <em>getTempMaxMin()</em>, <em>getDescription()</em>, <em>getIcon()</em>.</p>
-</li>
-</ul>
-<h4 id="exemple">Exemple :</h4>
-<ul>
-<li>date2.setText("J+1 : " + addDays(1)); *</li>
-<li>temp2.setText(getTempDouble(getTempMaxMin(8,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(8,obj,"temp_max"), true) + "°C"); *</li>
-<li>descrip2.setText(getDesciption(8,obj)); *</li>
-<li>
-<p>imgIcon2.setImage(new Image("images/" + getIcon(8,obj) +".png")); *</p>
-</li>
-<li>
-<p>stateTimer ()  : retourne l'état du timer (booléen).</p>
-</li>
-<li>
-<p>stateCity ()  : retourne un booléen pour indiquer si le textField devant récupérer la ville est vide ou pas.</p>
-</li>
-<li>
-<p>stateRefresh ()  : retourne un booléen pour indiquer si le textField devant récupérer le nombre est vide ou pas.</p>
-</li>
-<li>
-<p>reload (ActionEvent event)  : permet de démarrer un timer qui va récupérer un nombre en minutes qui va être converti en millisecondes. On déclenche alors un thread (une tâche ou TimerTask), qui va rechargé les informations de l'interface, mettre à jour la maj tout les X minutes. Auquel cas, on retourne une Exception avec le message d'erreur (nombre invalide, saisir les deux champs etc). Afin que l'interface ne lague pas, on utilise la méthode <em>runLater()</em> qui permet de rafraîchir plus tard l'interface et de ne pas créer d'exception lié au Thread.</p>
-</li>
+<li>stateTimer ()  : retourne l'état du timer (booléen).
+<br /><br /></li>
+<li>stateCity ()  : retourne un booléen pour indiquer si le textField devant récupérer la ville est vide ou pas.
+<br /><br /></li>
+<li>stateRefresh ()  : retourne un booléen pour indiquer si le textField devant récupérer le nombre est vide ou pas.
+<br /><br /></li>
+<li>reload (ActionEvent event)  : permet de démarrer un timer qui va récupérer un nombre en minutes qui va être converti en millisecondes. On déclenche alors un thread (une tâche ou TimerTask), qui va rechargé les informations de l'interface, mettre à jour la maj tout les X minutes. Auquel cas, on retourne une Exception avec le message d'erreur (nombre invalide, saisir les deux champs etc). Afin que l'interface ne lague pas, on utilise la méthode <em>runLater()</em> qui permet de rafraîchir plus tard l'interface et de ne pas créer d'exception lié au Thread.</li>
 </ul>
 <h3 id="json">JSON</h3>
 <ul>
-<li>À partir de la requête JSON (getJsonWeatherByCityName() et getJsonWeatherByCityNameFor5()), on peut générér les classes qui nous permettent d'accéder directement aux élements sans avoir besoin de parser en JSON la requête (j'ai dû réalisé quand même la manoeuvre pour les prévisions des jours suivants). Nous obtenons les classes suivantes :
-</br>
-</br></li>
+<li>À partir de la requête JSON (getJsonWeatherByCityName() et getJsonWeatherByCityNameFor5()), on peut générér les classes qui nous permettent d'accéder directement aux élements sans avoir besoin de parser en JSON la requête (j'ai dû réalisé quand même la manoeuvre pour les prévisions des jours suivants). Nous obtenons les classes suivantes :</li>
 <li>City</li>
 <li>Clouds</li>
 <li>Coord</li>
@@ -317,13 +316,14 @@
 <p>Afin de positionner les élements, j'ai utilisé une VBox, un SplitPane et des AnchorPanes.</p>
 <p>Les différents éléments de l'interface :</p>
 <ul>
-<li>Menubar comprenant 3 menus : affichage, ma liste, paramètres.
-<strong> Affichage : humidité (MenuItem), pression (MenuItem), vent (MenuItem), température Max (MenuItem), température Min (MenuItem), ressentie (MenuItem), lever (MenuItem), coucher (MenuItem).
-</strong> Ma liste : sélectionner (Menu), ajouter (MenuItem), supprimer (Menu).
-** Paramètres : nettoyer (MenuItem), actualisation arrêt (MenuItem), quitter (MenuItem).</li>
+<li>Menubar comprenant 3 menus : affichage, ma liste, paramètres.</li>
+<li>Affichage : humidité (MenuItem), pression (MenuItem), vent (MenuItem), température Max (MenuItem), température Min (MenuItem), ressentie (MenuItem), lever (MenuItem), coucher (MenuItem).</li>
+<li>Ma liste : sélectionner (Menu), ajouter (MenuItem), supprimer (Menu).</li>
+<li>Paramètres : nettoyer (MenuItem), actualisation arrêt (MenuItem), quitter (MenuItem).</li>
 <li>Button <code>Valider</code> : permet d'avoir les prévisions pour la ville renseignée.</li>
 <li>Button <code>Actualiser</code> : permet d'actualiser toutes les X minutes l'interface.</li>
 <li>TextField <code>city</code> : permet de renseigner la ville.</li>
+<li>TextField <code>country</code> : permet de renseigner le pays.</li>
 <li>TextField <code>refresh</code> : permet de renseigner le nombre de minutes.</li>
 <li>label <code>lastUpdate</code> : permet de retourner la date et l'heure de la dernière action.</li>
 <li>label <code>result</code> : retourne un message pour indiquer si la recherche s'est bien passé ou un message d'erreur.</li>
@@ -389,6 +389,11 @@
 <li>
 <p><img alt="Image not found" src="images/pom3.png" title="applciation" /></p>
 </li>
+</ul>
+<h2 id="ameliorations-possibles">Améliorations possibles</h2>
+<ul>
+<li>Possibilité de faire une sauvegarde du code;</li>
+<li>Faire du refactoring.</li>
 </ul>
               
             </div>

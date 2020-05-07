@@ -49,7 +49,13 @@ public class WeatherController {
 	private Menu deleteMenu;
 	
 	@FXML
+	private MenuItem newMenu;
+	
+	@FXML
 	private MenuItem menuTest;
+	
+	@FXML
+	private MenuItem menuTest1;
 	
 	@FXML
 	private MenuItem addItem;
@@ -88,7 +94,13 @@ public class WeatherController {
     private TextField city;
 	
 	@FXML
+    private TextField country;
+	
+	@FXML
     private TextField refresh;
+	
+	@FXML
+	private Label textCountry;
 
     @FXML
     private Label lastUpdate;
@@ -234,6 +246,10 @@ public class WeatherController {
     
     private String cityFound;
     
+    private String countryFound;
+    
+    private String nameResearch;
+    
     private Result res;
     
     private DateFormat dateFormat;
@@ -245,6 +261,7 @@ public class WeatherController {
 
 	@FXML
    	public void initialize() {
+		textCountry.setText("Si ville hors France,\n renseignez le pays :");
     	result.setText("Aucune recherche effectuée !");
     	lastUpdate.setText("N/A");
     	cityCountry.setText("N/A");
@@ -416,6 +433,7 @@ public class WeatherController {
 	void setCityResearch(ActionEvent event) {
 	    MenuItem currentMenu = (MenuItem) event.getSource();
 	    String currentCity = currentMenu.getText();
+	    LOG.info("on effectue un recherche pour" + currentCity);
 	    checkCityName(currentCity);
 	}
 	
@@ -423,30 +441,85 @@ public class WeatherController {
 	void addCityList(ActionEvent event) {
 		if (stateCity()) {
 			String nameCity = city.getText();
-			MenuItem newMenu = new MenuItem(nameCity);
-		    select.getItems().add(newMenu);
-		    addIntoDelete(nameCity);
-		    newMenu.setOnAction(e -> {
-		    	setCityResearch(e);
-		    });
+			if (country.getText() == null || country.getText().trim().isEmpty()) {
+				nameResearch = nameCity;
+				newMenu = new MenuItem(nameResearch);
+				addIntoDelete(nameResearch);
+			} else {
+				String nameCountry = country.getText();
+				nameResearch = nameCity + ',' + nameCountry;
+				newMenu = new MenuItem(nameResearch);
+				addIntoDelete(nameResearch);
+			}
+	    	try {
+	    		for (int i = 0; i <= select.getItems().size() ; ++i) {
+	    			//If the last element isn't not the same the new insert
+					if (stateMenu(select,i,nameResearch) == true) {
+						//LOG.info(newMenu.getText() + " on ajoute dans select");
+						select.getItems().add(newMenu);
+					}
+				}
+	    		newMenu.setOnAction(e -> {
+			    	setCityResearch(e);
+			    });
+			} catch (Exception e) {
+				LOG.severe(newMenu.getText() + " a déjà été ajouté au menu 'Sélectionner'");
+	    	}
 		}
 	}
 	
+	/** 
+     * <b>stateMenu</b> 
+     * 
+     * permet de vérifier si le dernier élément de la liste correspond ou non au dernier ajout (permet d'éviter des doublons et d'avoir par exemple n fois Paris, FR)
+     * 
+     * @param menuCheck
+     * 		correspond au menu, s'il s'agit du menu de sélection ou de deletion
+     * @param i
+     * 		correspond à l'élément i (MenuItem i) du Menu, ex : si i=0 il s'agit du menuItem 0 qui correspond à Paris, FR
+     * @param newAddResearch
+     * 		correspond à la ville / ville, pays que l'on souhaite ajouter au menu
+     * @return statut
+     * 		retourne l'état, si true, alors le dernier élément ajouté du menu est différent du nouveau à ajouter
+     */ 
+	
+	public boolean stateMenu(Menu menuCheck,int i, String newAddResearch) {
+		Boolean statut = false;
+		Integer LastElm = (menuCheck.getItems().size() -1);
+		if (i == LastElm) {
+			//If the last element of the menu not contains the new string (new MenuItem), return true
+			if(!menuCheck.getItems().get(LastElm).getText().contentEquals(newAddResearch)) {
+				//LOG.info(menuCheck.getItems().get(LastElm).getText()+ " : dernier élément de la liste");
+				return statut = true;
+			}
+		}
+		return statut;
+    }
+	
+	
 	public void addIntoDelete(String nameCity) {
 		MenuItem newMenu = new MenuItem(nameCity);
-		deleteMenu.getItems().add(newMenu);
-		newMenu.setOnAction(e -> {
-			//newMenu.setDisable(true);
-			LOG.info("Nom du menu " + newMenu.getText());
-			for (int i = 0; i < select.getItems().size(); i++) {
-				//LOG.info("Je suis sur l'onglet " + i + " qui correspond "+ select.getItems().get(i).getText());
-				if (newMenu.getText().equals(select.getItems().get(i).getText())) {
-					//LOG.info("je supprime l'index " + i);
-					select.getItems().remove(i);
+		try {
+			for (int i = 0; i <= deleteMenu.getItems().size() ; ++i) {
+				if (stateMenu(deleteMenu,i,nameCity) == true) {
+					deleteMenu.getItems().add(newMenu);
 				}
 			}
-			deleteMenu.getItems().remove(newMenu);
-	    });
+			newMenu.setOnAction(e -> {
+				//newMenu.setDisable(true);
+				//LOG.info("On retire " + newMenu.getText());
+				for (int i = 0; i < select.getItems().size(); i++) {
+					//LOG.info("Je suis sur l'onglet " + i + " qui correspond "+ select.getItems().get(i).getText());
+					if(newMenu.getText().equals(select.getItems().get(i).getText())) {
+						//LOG.info("je supprime l'index " + i);
+						select.getItems().remove(i);
+					}
+				}
+				deleteMenu.getItems().remove(newMenu);
+		    });
+		} catch (Exception e) {
+			LOG.severe(newMenu.getText() + " a déjà été ajouté au menu 'Supprimer'");
+    	}
 	}
     
     @FXML 
@@ -506,12 +579,33 @@ public class WeatherController {
     		result.setTextFill(Color.RED);
     	} else {
     		cityFound = city.getText();
-    		checkCityName(cityFound);
+    		if (country.getText() == null || country.getText().trim().isEmpty()) {
+        		checkCityName(cityFound);
+    		} else {
+    			countryFound = country.getText();
+    			checkCityCountryName(cityFound,countryFound);
+    		}
     	}
     }
     
     public void checkCityName(String city) {
     	cl = new MeteoClient(city);
+      	res = cl.getWeatherByCityName();
+		//LOG.info(cl.getJsonWeatherByCityName());
+        if (res == null) {
+        	LOG.severe("La ville que vous avez saisie n'existe pas");
+            result.setText("Veuillez saisir un nom de ville valide !");
+    		result.setTextFill(Color.RED);
+        } else {
+    		result.setText("Recherche terminée !");
+    		result.setTextFill(Color.GREEN);
+    		displayGUI(res);
+    	}
+		getDate();
+    }
+    
+    public void checkCityCountryName(String city, String country) {
+    	cl = new MeteoClient(city, country);
       	res = cl.getWeatherByCityName();
 		//LOG.info(cl.getJsonWeatherByCityName());
         if (res == null) {
@@ -532,7 +626,7 @@ public class WeatherController {
     		checkTextFieldCity();
     	} catch (Exception e) {
     		LOG.severe("Erreur de saisie : "+ e.getMessage());
-    		e.printStackTrace();
+    		//e.printStackTrace();
     		//System.exit(-1);
     	}
     }
@@ -556,15 +650,16 @@ public class WeatherController {
     /** 
      * <b>getTempDouble</b> 
      * @param nb
-     * 		contient le nombre non converti en Farhenheit
+     * 		correspond à la string contenant la valeur non convertie en Farhenheit
      * @param temperature 
      * 		Boolean : si c'est une température ou pas
      * @return convertTemp
      *     retourne la température en Celsius (initialement en Farhenheit)
      */ 
     
-    public String getTempDouble (Double nb, Boolean temperature) {
-    	Float temp = (float) (temperature ? nb - 273.15f : nb);
+    public String getTempDouble (String nb, Boolean temperature) {
+		double nbC =Double.parseDouble(nb);
+    	Float temp = (float) (temperature ? nbC - 273.15f : nbC);
     	String convertTemp = String.valueOf(Math.round(temp * 100.0) / 100.0);
     	return convertTemp;
     }
@@ -710,10 +805,10 @@ public class WeatherController {
      * 		retourne le nombre au format Double temp
      */ 
 	
-	public Double getTempMaxMin(int nbDesc, JSONObject obj, String temp_string) {
+	public String getTempMaxMin(int nbDesc, JSONObject obj, String temp_string) {
 		JSONObject mainList = obj.getJSONArray("list").getJSONObject(nbDesc);
 		JSONObject mainEl = mainList.getJSONObject("main");
-		Double temp = (Double) mainEl.get(temp_string);
+		String temp =  String.valueOf(mainEl.get(temp_string));
 		return temp;
 	}
 	
@@ -735,22 +830,22 @@ public class WeatherController {
       	date5.setText("J+4 : " + addDays(4));
       	
       	//temperature
-		temp2.setText(getTempDouble(getTempMaxMin(8,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(8,obj,"temp_max"), true) + "°C");
-		temp3.setText(getTempDouble(getTempMaxMin(16,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(16,obj,"temp_max"), true) + "°C");
-		temp4.setText(getTempDouble(getTempMaxMin(24,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(23,obj,"temp_max"), true) + "°C");
-		temp5.setText(getTempDouble(getTempMaxMin(32,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(32,obj,"temp_max"), true) + "°C");
+		temp2.setText(getTempDouble(getTempMaxMin(7,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(7,obj,"temp_max"), true) + "°C");
+		temp3.setText(getTempDouble(getTempMaxMin(15,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(15,obj,"temp_max"), true) + "°C");
+		temp4.setText(getTempDouble(getTempMaxMin(23,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(23,obj,"temp_max"), true) + "°C");
+		temp5.setText(getTempDouble(getTempMaxMin(31,obj,"feels_like"), true) + "°C/" + getTempDouble(getTempMaxMin(31,obj,"temp_max"), true) + "°C");
 		
 		//description
-		descrip2.setText(getDesciption(8,obj));
-		descrip3.setText(getDesciption(16,obj));
-		descrip4.setText(getDesciption(24,obj));
-		descrip5.setText(getDesciption(32,obj));
+		descrip2.setText(getDesciption(7,obj));
+		descrip3.setText(getDesciption(15,obj));
+		descrip4.setText(getDesciption(23,obj));
+		descrip5.setText(getDesciption(31,obj));
       	
       	//Imagesview
-		imgIcon2.setImage(new Image("images/" + getIcon(8,obj) +".png"));
-		imgIcon3.setImage(new Image("images/" + getIcon(16,obj) +".png"));
-		imgIcon4.setImage(new Image("images/" + getIcon(24,obj) +".png"));
-		imgIcon5.setImage(new Image("images/" + getIcon(32,obj)+".png"));
+		imgIcon2.setImage(new Image("images/" + getIcon(7,obj) +".png"));
+		imgIcon3.setImage(new Image("images/" + getIcon(15,obj) +".png"));
+		imgIcon4.setImage(new Image("images/" + getIcon(23,obj) +".png"));
+		imgIcon5.setImage(new Image("images/" + getIcon(31,obj)+".png"));
 		
 	}
 	
@@ -825,7 +920,6 @@ public class WeatherController {
         	LOG.severe("Erreur de saisie : "+ e.getMessage());
         	result.setText("Veuillez saisir un nombre de minutes !");
         	result.setTextFill(Color.RED);
-    		//e.printStackTrace();
         }
     }
 }

@@ -4,11 +4,19 @@
 
 </br>![Image not found](images/interface1.png "interface")
 
-### 1) Chercher les prévisions pour une ville
+### 1) Chercher les prévisions pour une ville (en France)
 
-En rentrant le nom d'une ville, vous pouvez obtenir les prévisions du jour plus ceux des 4 prochains jours (l'api ne permet d'avoir que les prévisions des 5 prochains jours en version gratuite). Peu importe l'écriture (Majuscule ou minucule), tant que la ville est bien écrite, la recherche se déroulera sans problème, cliquez ensuite sur le bouton *Valider*.
+En rentrant le nom d'une ville, vous pouvez obtenir les prévisions du jour plus ceux des 4 prochains jours (l'api ne permet d'avoir que les prévisions des 5 prochains jours en version gratuite). Peu importe l'écriture (Majuscule ou minucule), tant que la ville est bien écrite, la recherche se déroulera sans problème, cliquez ensuite sur le bouton *Valider*. 
+
+** Pour les villes françaises, vous n'avez pas besoin de renseigner obligatoirement le pays (FR). **
+
+** Si vous souhaitez rechercher une autre ville dans un autre pays, vous devez en plus renseigner le pays, exemple : ville : Dallas, pays : US. **
 
 </br>![Image not found](images/interface2.png "interface")
+
+Ville internationale :
+
+![Image not found](images/interface23.png "interface")
 
 ### 2) Rafraîchir pour obtenir les prévisions de la ville toutes les X minutes
 
@@ -88,28 +96,38 @@ La date de mise à jour sera rafraîxhi toutes les X minutes.
 
 ![Image not found](images/interface15.png "interface")
 
-#### Supprimer
+** Comme expliquer plus haut, il n'est pas nécessaire de renseigner le pays, pour les villes en France, par contre si vous souhaitez ajouter une autre ville, il faut renseigner le pays comme**
 
 ![Image not found](images/interface16.png "interface")
 
-* Remarque : si une ville est supprimée, elle est supprimée définitivement de la sélection, il est possible de l'ajouter à nouveau.
-
-## Les messages d'erreurs
-
-### Pour actualiser :
+#### Supprimer
 
 ![Image not found](images/interface17.png "interface")
 
+* Remarque : si une ville est supprimée, elle est supprimée définitivement de la sélection, il est possible de l'ajouter à nouveau.
+
+![Image not found](images/interface18.png "interface")
+
+## Les messages d'erreurs
+
+Voici-ci dessous quelques exemples de messages d'erreurs.
+
+### Pour actualiser :
+
 ![Image not found](images/interface20.png "interface")
+
+![Image not found](images/interface21.png "interface")
+
+![Image not found](images/interface22.png "interface")
 
 * Remarque : le message s'active si les champs sont vides ou incorrectes. Si l'entrée pour le nombre de minutes n'est pas un entier alors l'actualisation n'aura pas lieu.
 
 ### Pour valider :
 
-![Image not found](images/interface18.png "interface")
+![Image not found](images/interface19.png "interface")
 
 ### Pour la séléction :
 
-![Image not found](images/interface19.png "interface")
+![Image not found](images/interface25.png "interface")
 
 * Remarque : si une ville n'existe pas mais qu'elle est ajoutée à la liste, la recherche n'aura pas lieu quand même.

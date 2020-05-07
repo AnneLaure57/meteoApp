@@ -49,8 +49,16 @@ public class TestsUnitaires {
 	@Test
 	public void testTempDouble() {
 		WeatherController c = new WeatherController();
-		String resultat = c.getTempDouble(286.16, true);
-		String resAttendu = "13.01" ;
+		String resultat = c.getTempDouble("286.14", true);
+		String resAttendu = "12.99" ;
+		assertEquals(resAttendu,resultat);
+	}
+	
+	@Test
+	public void testTempDouble2() {
+		WeatherController c = new WeatherController();
+		String resultat = c.getTempDouble("290", true);
+		String resAttendu = "16.85" ;
 		assertEquals(resAttendu,resultat);
 	}
 	

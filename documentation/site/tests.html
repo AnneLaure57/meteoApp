@@ -86,6 +86,8 @@
         
             <li><a class="toctree-l3" href="#test-sur-testtempdouble">Test sur testTempDouble()</a></li>
         
+            <li><a class="toctree-l3" href="#test-sur-testtempdouble1">Test sur testTempDouble1()</a></li>
+        
             <li><a class="toctree-l3" href="#test-sur-testdate">Test sur testDate()</a></li>
         
             <li><a class="toctree-l3" href="#test-sur-testtempsun">Test sur testTempSun()</a></li>
@@ -143,11 +145,13 @@
                 <h1 id="liste-des-tests-unitaires">Liste des tests unitaires</h1>
 <p>Les tests unitaires se trouve dans le dossier source, vous pouvez consulter le fichier <code>TestsUnitaires.java</code> depuis <code>src/test/java</code>. Veuillez vous assurer que vous pouvez utiliser <code>JUnit</code> sur votre IDE auquel cas référez vous à la documentation de votre IDE.</p>
 <h2 id="test-sur-testtemp">Test sur testTemp()</h2>
-<p></br> On cherche à vérifier si la température calculée avec la méthode <em>getTemp()</em> est bien égale à la température donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
+<p></br> On cherche à vérifier si la température calculée avec la méthode <em>getTemp()</em> est bien égale à la température donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes. Pour cet exemple, on vérifie que 286.16 vaut bien bien, une fois convertie, 13.01.</p>
 <h2 id="test-sur-testtempdouble">Test sur testTempDouble()</h2>
+<p></br> On cherche à vérifier si la température calculée avec la méthode <em>getTempDouble()</em> est bien égale à la température donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes. Pour cet exemple, on vérifie que 286.14 vaut bien bien, une fois convertie, 12.99.</p>
+<h2 id="test-sur-testtempdouble1">Test sur testTempDouble1()</h2>
 <p></br> On cherche à vérifier si la température calculée avec la méthode <em>getTempDouble()</em> est bien égale à la température donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
 <h2 id="test-sur-testdate">Test sur testDate()</h2>
-<p></br> On cherche à vérifier si la date calculée avec la méthode <em>addDays()</em> est bien égale au résultat trouvé sans la méthode. On utilise la méthode <em>assertFalse()</em> permet de vérifier que les deux résultats ne sont pas les mêmes, car le résultat attendu correspond à une date statique et l'autre donne la date du jour actuelle, donc si on ajoute 0 jours, alors les deux dates doivent être différentes.</p>
+<p></br> Il s'agit du même test au dessus, à la place de la valeur à tester, il s'agit d'une valeur entière, on teste avec 290 et on vérifie que 290 est bien égale à 16.85.</p>
 <h2 id="test-sur-testtempsun">Test sur testTempSun()</h2>
 <p></br> On cherche à vérifier si l'heure calculée avec la méthode <em>getTimeSun()</em> est bien égale à l'heure donnée sans la méthode. On utilise la méthode <em>assertEquals()</em> permet de vérifier que les deux résultats sont bien les mêmes.</p>
 <h2 id="test-sur-testcity">Test sur testCity()</h2>

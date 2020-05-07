@@ -4,15 +4,20 @@ Les tests unitaires se trouve dans le dossier source, vous pouvez consulter le f
 
 ## Test sur testTemp()
 
-</br> On cherche à vérifier si la température calculée avec la méthode *getTemp()* est bien égale à la température donnée sans la méthode. On utilise la méthode *assertEquals()* permet de vérifier que les deux résultats sont bien les mêmes.
+</br> On cherche à vérifier si la température calculée avec la méthode *getTemp()* est bien égale à la température donnée sans la méthode. On utilise la méthode *assertEquals()* permet de vérifier que les deux résultats sont bien les mêmes. Pour cet exemple, on vérifie que 286.16 vaut bien bien, une fois convertie, 13.01.
+
 
 ## Test sur testTempDouble()
+
+</br> On cherche à vérifier si la température calculée avec la méthode *getTempDouble()* est bien égale à la température donnée sans la méthode. On utilise la méthode *assertEquals()* permet de vérifier que les deux résultats sont bien les mêmes. Pour cet exemple, on vérifie que 286.14 vaut bien bien, une fois convertie, 12.99.
+
+## Test sur testTempDouble1()
 
 </br> On cherche à vérifier si la température calculée avec la méthode *getTempDouble()* est bien égale à la température donnée sans la méthode. On utilise la méthode *assertEquals()* permet de vérifier que les deux résultats sont bien les mêmes.
 
 ## Test sur testDate()
 
-</br> On cherche à vérifier si la date calculée avec la méthode *addDays()* est bien égale au résultat trouvé sans la méthode. On utilise la méthode *assertFalse()* permet de vérifier que les deux résultats ne sont pas les mêmes, car le résultat attendu correspond à une date statique et l'autre donne la date du jour actuelle, donc si on ajoute 0 jours, alors les deux dates doivent être différentes.
+</br> Il s'agit du même test au dessus, à la place de la valeur à tester, il s'agit d'une valeur entière, on teste avec 290 et on vérifie que 290 est bien égale à 16.85.
 
 ## Test sur testTempSun()
 
