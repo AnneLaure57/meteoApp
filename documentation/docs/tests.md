@@ -13,11 +13,11 @@ Les tests unitaires se trouve dans le dossier source, vous pouvez consulter le f
 
 ## Test sur testTempDouble1()
 
-</br> On cherche à vérifier si la température calculée avec la méthode *getTempDouble()* est bien égale à la température donnée sans la méthode. On utilise la méthode *assertEquals()* permet de vérifier que les deux résultats sont bien les mêmes.
+</br> Il s'agit du même test au dessus, à la place de la valeur à tester, il s'agit d'une valeur entière, on teste avec 290 et on vérifie que 290 est bien égale à 16.85 (il se peut que la requête JSON contient des nombres entiers, la fonction a été adapté pour pouvoir lire les doubles ainsi que les integers).
 
 ## Test sur testDate()
 
-</br> Il s'agit du même test au dessus, à la place de la valeur à tester, il s'agit d'une valeur entière, on teste avec 290 et on vérifie que 290 est bien égale à 16.85.
+On cherche à vérifier si l'la date calculée avec la méthode *getDate()* est bien égale à la date donnée sans la méthode. On utilise la méthode *assertEquals()* permet de vérifier que les deux résultats sont bien les mêmes.
 
 ## Test sur testTempSun()
 

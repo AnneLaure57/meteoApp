@@ -1,0 +1,3 @@
+Paris,FR
+Dallas,US
+London,UK

@@ -74,6 +74,7 @@ public class App extends Application{
 	
 	public void start(Stage primaryStage) {
 		Parent root =  null;
+		//WeatherController wc = new WeatherController();
 		try {
 			root = FXMLLoader.load(getClass().getResource("view/Window.fxml"));
 		} catch (IOException | NullPointerException e) {
@@ -91,10 +92,53 @@ public class App extends Application{
 		primaryStage.hide();
 		//for the responsive window's
 		primaryStage.sizeToScene();
+		/*primaryStage.setScene(scene);
+		wc.loadDataT();
+		primaryStage = (Stage) root.getScene().getWindow();
 		primaryStage.setScene(scene);
+		loadDataT(root, primaryStage);*/
+		//wc.loadDataT();
+		//primaryStage = (Stage) root.getScene().getWindow();
+		scene.setRoot((Parent) root);
+		primaryStage.setScene(scene);
+		/*wc.loadDataT();
+		scene.setRoot((Parent) root);
+		scene.getWindow().sizeToScene();*/
 		primaryStage.show();
 		
 	}
+	
+	//TODO load
+	//Try to work
+	/*public Stage loadDataT(Parent root, Stage primaryStage) {
+		String path = "./src/main/resources/backup.txt"; 
+		MenuBar menuBar = new MenuBar();
+		try {
+			FileReader reader = new FileReader(path);
+			BufferedReader bufferedReader = new BufferedReader(reader);
+			//Skip first line
+			String line = bufferedReader.readLine();
+			Menu deleteMenu = new Menu();
+			//MenuItem t = new MenuItem("Bienvenue");
+            while ((line = bufferedReader.readLine()) != null) {
+            	MenuItem m = new MenuItem(line);
+            	System.out.println("ligne : " +line);
+            	deleteMenu.getItems().add(m);
+            	System.out.println("ligne : " + m.getText());
+            	//deleteMenu.getItems().add(t);
+            	for (int i = 0; i < deleteMenu.getItems().size(); i++) {
+                	System.out.println(deleteMenu.getItems().get(i).getText());
+                	System.out.println("taille du menu: " +deleteMenu.getItems().size());
+    			}
+            }
+            menuBar.getMenus().add(deleteMenu);
+            reader.close();
+        } catch (IOException e) {
+        	e.printStackTrace();
+        	System.out.println("Gros PB");
+        }
+		return primaryStage = (Stage) root.getScene().getWindow();
+	}*/
 
 	public static void main(String[] args) {
 		//Démarrer le menu

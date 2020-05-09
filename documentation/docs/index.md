@@ -19,7 +19,8 @@ L'application permet à partir de l'interface interactive (conçue en JAVA FX) d
 * d'avoir les prévisions pour les 4 prochains jours,
 * de pouvoir rafraîchir les prévisions toutes les X minutes,
 * de pouvoir personnaliser l'affichage des données du jour courant,
-* de pouvoir créer une liste personnalisée (une liste de villes).
+* de pouvoir créer une liste personnalisée (une liste avec les villes et pays),
+* sauvegarder et réactualiser cette liste.
 
 ##Auteur
 

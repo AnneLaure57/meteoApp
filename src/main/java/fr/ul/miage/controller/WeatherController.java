@@ -1,5 +1,11 @@
 package fr.ul.miage.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +23,7 @@ import fr.ul.miage.model.MeteoClient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
@@ -29,6 +36,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 public class WeatherController {
+	
+	@FXML
+	private Parent root ;
 	
 	@FXML
 	private MenuBar mainItems;
@@ -240,6 +250,9 @@ public class WeatherController {
     @FXML
     private ImageView exitIcon;
     
+    @FXML
+    private ImageView loadIcon;
+    
     private static final Logger LOG = Logger.getLogger(MeteoClient.class.getName());
     
     private MeteoClient cl;
@@ -258,6 +271,11 @@ public class WeatherController {
     
     private boolean timerStart = false;
     
+    private boolean reload = false;
+    
+    private String path = "backup.txt";
+    
+    private File file = new File(path);
 
 	@FXML
    	public void initialize() {
@@ -284,22 +302,18 @@ public class WeatherController {
     	cleanIcon.setImage(new Image("images/clean.png"));
     	stopIcon.setImage(new Image("images/stop.png"));
     	exitIcon.setImage(new Image("images/exit.png"));
+    	loadIcon.setImage(new Image("images/load.png"));
     	imgIcon2.setImage(new Image("images/not_available.png"));
     	imgIcon3.setImage(new Image("images/not_available.png"));
     	imgIcon4.setImage(new Image("images/not_available.png"));
     	imgIcon5.setImage(new Image("images/not_available.png"));
     	refresh_icon.setImage(new Image("images/refresh_icon.png"));
-    	/*other solution (Menu without MenuItem)
-    	quit.setGraphic( ButtonBuilder.create().text("") .onAction(new EventHandler<ActionEvent>(){
-    		@Override
-    		public void handle(ActionEvent t) {
-    	          System.exit(0);
-    	           } }).build());*/
+    	loadDataA();
+ 
    	}
 	
 	@FXML
     void display(ActionEvent event) {
-    	// To optimize : use observableList
     	menuH.setOnAction(e -> 
     	{
 	    	if (menuH.isSelected())
@@ -433,7 +447,6 @@ public class WeatherController {
 	void setCityResearch(ActionEvent event) {
 	    MenuItem currentMenu = (MenuItem) event.getSource();
 	    String currentCity = currentMenu.getText();
-	    LOG.info("on effectue un recherche pour" + currentCity);
 	    checkCityName(currentCity);
 	}
 	
@@ -457,8 +470,10 @@ public class WeatherController {
 					if (stateMenu(select,i,nameResearch) == true) {
 						//LOG.info(newMenu.getText() + " on ajoute dans select");
 						select.getItems().add(newMenu);
+						saveData(newMenu);
 					}
 				}
+	    		System.out.println("Menu sélectionné : " +newMenu.getText());
 	    		newMenu.setOnAction(e -> {
 			    	setCityResearch(e);
 			    });
@@ -496,7 +511,6 @@ public class WeatherController {
 		return statut;
     }
 	
-	
 	public void addIntoDelete(String nameCity) {
 		MenuItem newMenu = new MenuItem(nameCity);
 		try {
@@ -506,7 +520,6 @@ public class WeatherController {
 				}
 			}
 			newMenu.setOnAction(e -> {
-				//newMenu.setDisable(true);
 				//LOG.info("On retire " + newMenu.getText());
 				for (int i = 0; i < select.getItems().size(); i++) {
 					//LOG.info("Je suis sur l'onglet " + i + " qui correspond "+ select.getItems().get(i).getText());
@@ -516,12 +529,113 @@ public class WeatherController {
 					}
 				}
 				deleteMenu.getItems().remove(newMenu);
+				saveDataD(deleteMenu);
 		    });
 		} catch (Exception e) {
 			LOG.severe(newMenu.getText() + " a déjà été ajouté au menu 'Supprimer'");
     	}
 	}
-    
+	
+	public void saveDataD(Menu menuToSave) {
+		try {
+            FileWriter writer = new FileWriter(file, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            for (int i = 0; i < menuToSave.getItems().size(); i++) {
+            	bufferedWriter.write(menuToSave.getItems().get(i).getText());
+            	bufferedWriter.newLine();
+			}
+            result.setText("La liste a été mise à jour !");
+    		result.setTextFill(Color.BLUE);
+            bufferedWriter.close();
+        } catch (IOException e) {
+        	result.setText("Impossible de sauvegarder !");
+    		result.setTextFill(Color.RED);
+        	LOG.severe("Impossible de faire une sauvegarde des données");
+        }
+	}
+	
+	public void saveData(MenuItem menuItemToSave) {
+		try {
+            FileWriter writer = new FileWriter(file, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(menuItemToSave.getText());
+            bufferedWriter.newLine();
+            result.setText("Le nouvel élément a bien été sauvegardé !");
+    		result.setTextFill(Color.GREEN);
+            bufferedWriter.close();
+        } catch (IOException e) {
+        	result.setText("Impossible de sauvegarder !");
+    		result.setTextFill(Color.RED);
+        	LOG.severe("Impossible de faire une sauvegarde de l'application");
+        }
+	}
+	
+	@FXML 
+	public void loadData(ActionEvent event) {
+		try {
+			if (file.exists() && select.getItems().size() <= 1 ) {
+				FileReader reader = new FileReader(path);
+				BufferedReader bufferedReader = new BufferedReader(reader);
+				String line;
+				if (!reload) {
+					while ((line = bufferedReader.readLine()) != null) {
+		            	reload = true;
+		            	MenuItem newM = new MenuItem(line);
+		            	if (!line.equals("Paris,FR")) {
+		            		select.getItems().add(newM);
+			            	addIntoDelete(line);
+			            	newM.setOnAction(e -> {
+						    	setCityResearch(e);
+						    });
+		            	}
+		            }
+				}
+				result.setText("Chargement des données terminé !");
+	    		result.setTextFill(Color.GREEN);
+				bufferedReader.close();
+			} else {
+				result.setText("Application déjà à jour !");
+	    		result.setTextFill(Color.BLUE);
+				file = new File(path);
+			}
+        } catch (IOException e) {
+        	LOG.severe("Impossible de faire une lecture des données contenu dans le fichier de sauvegarde");
+        	//e.printStackTrace();
+        }
+	}
+	
+	public void loadDataA() {
+		try {
+			if (file.exists()) {
+				FileReader reader = new FileReader(path);
+				BufferedReader bufferedReader = new BufferedReader(reader);
+				//Skip first line
+				//String line = bufferedReader.readLine();
+				String line;
+	            while ((line = bufferedReader.readLine()) != null) {
+	            	MenuItem m = new MenuItem(line);
+	            	if (!line.equals("Paris,FR")) {
+		            	select.getItems().add(m);
+		            	addIntoDelete(line);
+		            	m.setOnAction(e -> {
+					    	setCityResearch(e);
+					    });
+	            	}
+	            }
+	            result.setText("Chargement des données terminé !");
+	    		result.setTextFill(Color.GREEN);
+	            reader.close();
+			} else {
+				result.setText("Impossible de sauvegarder !");
+	    		result.setTextFill(Color.RED);
+				file = new File(path);
+			}
+        } catch (IOException e) {
+        	LOG.severe("Impossible de faire une lecture des données contenu dans le fichier de sauvegarde");
+        	//e.printStackTrace();
+        }
+	}
+	
     @FXML 
     void exitScene(ActionEvent event) {
     	try {
@@ -814,7 +928,6 @@ public class WeatherController {
 	
 	
 	public void displayPrevGUI() {
-		//For the rest
 		//LOG.info(cl.getCity());
 		//LOG.info(cl.getJsonWeatherByCityNameFor5());
       	
@@ -893,7 +1006,7 @@ public class WeatherController {
     }
 	
 	@FXML
-	void reload(ActionEvent event) throws Exception{
+	void actualise(ActionEvent event) {
 		try {
 			if (!stateRefresh() || !stateCity() || res == null) {
 				result.setText("Veuillez remplir tous les champs ! ");

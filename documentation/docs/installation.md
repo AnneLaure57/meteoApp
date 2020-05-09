@@ -77,3 +77,5 @@ Pour Mac : <a href="https://www.alvinpoh.com/how-to-make-and-run-batch-files-in-
 ### LINUX
 
 Pour Linux : <a href="https://stackoverflow.com/questions/17015449/how-do-i-run-sh-or-bat-files-from-terminal">Solution LINUX</a>
+
+* Remarque : il se peut que vous rencontrez des problèmes avec le `.jar` car l'application utilise un fichier CSS ainsi que des images se trouvant dans `src/main/resources`.

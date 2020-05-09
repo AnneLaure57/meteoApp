@@ -68,7 +68,7 @@
     <a class="current" href="manuelTech.html">Manuel technique</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#la-documentation-technique">La documentation technique:</a></li>
+    <li class="toctree-l2"><a href="#la-documentation-technique">La documentation technique</a></li>
     
         <ul>
         
@@ -134,7 +134,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="la-documentation-technique">La documentation technique:</h1>
+                <h1 id="la-documentation-technique">La documentation technique</h1>
 <h2 id="les-outils">Les outils :</h2>
 <p></br> Pour ce projet j'ai travaillé avec les outils suivants :</p>
 <ul>
@@ -146,16 +146,16 @@
 <h2 id="le-diagramme-de-classe">Le diagramme de classe :</h2>
 <p></br><img alt="Image not found" src="images/diagrammeClasse.png" title="applciation" /></p>
 <ul>
-<li>Au vue de la qualité de la photo, le diagramme est fournie avec les fichiers sources sous le nom de <code>diagramm_class.ucls</code>.</li>
+<li>Au vue de la qualité de la photo et du nombres de classes, le diagramme est fournie avec les fichiers sources sous le nom de <code>diagramm_class.ucls</code>.</li>
 </ul>
 <h3 id="explications">Explications</h3>
 <p>Dans le diagramme, il y a les relations suivantes :</p>
 <ul>
-<li>Weather : association avec la classe MeteoClent et la classe Result.</li>
-<li>List : associations avec les classe Wind, Weather, Rain, Clouds, Sys et Main.</li>
-<li>Result : associations avec les classes Weather, Wind, Clouds, Coord, Sys et Main.</li>
-<li>Example : associations avec les classes Weather, List, City et Main.</li>
-<li>City : association avec la classe Coord.</li>
+<li><strong>Weather</strong> : association avec la classe MeteoClent et la classe Result.</li>
+<li><strong>List</strong> : associations avec les classe Wind, Weather, Rain, Clouds, Sys et Main.</li>
+<li><strong>Result</strong> : associations avec les classes Weather, Wind, Clouds, Coord, Sys et Main.</li>
+<li><strong>Example</strong> : associations avec les classes Weather, List, City et Main.</li>
+<li><strong>City</strong> : association avec la classe Coord.</li>
 </ul>
 <h2 id="design-patterns">Design Patterns</h2>
 <p>Afin de tester de nouvelles choses, j'ai utilisé le design pattern MVC (Modèle - Vue - Controller).</p>
@@ -165,10 +165,10 @@
 <p>Cette classe est la classe principale permettant de lancer l'interface (Baignoire.fxml). Il y a deux méthodes :</p>
 <ul>
 <li>
-<p>start() : permettant de charger le fichier <em>.fxml</em>, de modifier le titre de la fenêtre (setTitle()), de spécifier le scène qui va être utilisé (setScene()), d'afficher la scène (commande show()). La taille de la fenêtre n'est pas modifiable (avec setResizable()), ceci évitant de modifier la taille de la fenêtre et l'affichage a été réalisé de la manière la plus simple possible afin de pouvoir l'afficher sur tous les types d'écran (15 pouces, 17 pouces, 19 pouces et inférieur).</p>
+<p><strong>start()</strong> : permettant de charger le fichier <em>.fxml</em>, de modifier le titre de la fenêtre (setTitle()), de spécifier le scène qui va être utilisé (setScene()), d'afficher la scène (commande show()). La taille de la fenêtre n'est pas modifiable (avec setResizable()), ceci évitant de modifier la taille de la fenêtre et l'affichage a été réalisé de la manière la plus simple possible afin de pouvoir l'afficher sur tous les types d'écran (15 pouces, 17 pouces, 19 pouces et inférieur).</p>
 </li>
 <li>
-<p>main() : qui permet de charger la fenêtre avec la commande <em>launch(args)</em> .</p>
+<p><strong>main()</strong> : qui permet de charger la fenêtre avec la commande <em>launch(args)</em> .</p>
 </li>
 </ul>
 <h3 id="model-meteoclientjava">Model - MeteoClient.java</h3>
@@ -183,37 +183,37 @@
 <p>Il y a plusieurs constructeurs ainsi que les getters et setters.</p>
 <ul>
 <li>
-<p>buildRequest : permet de construire une requête pour le jour actuel.</p>
+<p><strong>buildRequest()</strong> : permet de construire une requête pour le jour actuel.</p>
 </li>
 <li>
-<p>getJsonWeatherByCityName : permet de se connecter à l'api pour obtenir le résultat de la requête pour un jour. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.</p>
+<p><strong>getJsonWeatherByCityName()</strong> : permet de se connecter à l'API pour obtenir le résultat de la requête pour le jour actuel. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.</p>
 </li>
 <li>
-<p>getWeatherByCityName : permet construire la requête et d'accéder aux informations grâce à la classe <code>Result</code>. La langue a également été modifié afin d'avoir les noms des villes et pays en français.</p>
+<p><strong>getWeatherByCityName()</strong> : permet construire la requête et d'accéder aux informations grâce à la classe <code>Result</code>. La langue a également été modifié afin d'avoir les noms des villes et pays en français.</p>
 </li>
 <li>
-<p>buildRequestFor5 : permet de construire une requête pour les prochains jours.</p>
+<p><strong>buildRequestFor5()</strong> : permet de construire une requête pour les prochains jours.</p>
 </li>
 <li>
-<p>getWeatherByCityNameFor5 : permet construire la requête et d'accéder aux informations grâce à la classe <code>Example</code>.</p>
+<p><strong>getWeatherByCityNameFor5()</strong> : permet construire la requête et d'accéder aux informations grâce à la classe <code>Example</code>.</p>
 </li>
 <li>
-<p>getJsonWeatherByCityNameFor5 : permet de se connecter à l'api pour obtenir le résultat de la requête pour les prochins jours. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.</p>
+<p><strong>getJsonWeatherByCityNameFor5()</strong> : permet de se connecter à l'API pour obtenir le résultat de la requête pour les prochins jours. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.</p>
 </li>
 </ul>
 <h3 id="controller-controllerjava">Controller - Controller.java</h3>
 <ul>
-<li>initialize() :  est la fonction qui s'exécute lorsque la fenètre FXML se créée. Lors de l'initialisation, on affiche le contenu des labels et des Images en modifiant le contenu avec les méthodes <em>setText()</em> et <em>setImage()</em>.
+<li><strong>initialize()</strong> :  est la fonction qui s'exécute lorsque la fenètre FXML se créée. Lors de l'initialisation, on affiche le contenu des labels et des Images en modifiant le contenu avec les méthodes <em>setText()</em> et <em>setImage()</em>. On appelle également la fonction <em>loadDataA()</em>, qui permet de charger automatique les villes qui ont été sauvegardées dans la liste personnalisée.
 <br /><br /></li>
-<li>diplay (ActionEvent e) : pour chaque MenuItem du menu "Affichage", on cherche à savoir si le menuItem est sélectionné (utilisation de isSelected()) alors si le label est visible (utilisation de isVisible()) alors on le cache ainsi que son image avec la méthode <em>setVisible()</em>. Pour déclencher la méthode, on utilise la méthode <em>setOnAction()</em>.
+<li><strong>diplay(ActionEvent e)</strong> : pour chaque MenuItem du menu "Affichage", on cherche à savoir si le menuItem est sélectionné (utilisation de isSelected()) alors si le label est visible (utilisation de isVisible()) alors on le cache ainsi que son image avec la méthode <em>setVisible()</em>. Pour déclencher la méthode, on utilise la méthode <em>setOnAction()</em>.
 <br /><br /></li>
-<li>setCityResearch (ActionEvent e) : permet de d'afficher les prévisions pour une ville contenu dans le menu "sélectionner". On récupère le label du menuItem et on lance la méthode <em>checkCityName()</em>.
+<li><strong>setCityResearch(ActionEvent e)</strong> : permet de d'afficher les prévisions pour une ville contenu dans le menu "sélectionner". On récupère le label du menuItem et on lance la méthode <em>checkCityName()</em>.
 <br /><br /></li>
-<li>addCityList (ActionEvent e) : si le TextField ville n'est pas vide, on vérifie si celui du pays est vide, s'il est vide on récupère le texte avec la méthode <em>getText()</em> sinon on concat la string récupérée depuis le TextField ville et celui du pays afin de n'en former plus qu'une seule :
+<li><strong>addCityList(ActionEvent e)</strong> : si le TextField ville n'est pas vide, on vérifie si celui du pays est vide, s'il est vide on récupère le texte avec la méthode <em>getText()</em> sinon on concat la string récupérée depuis le TextField ville et celui du pays afin de n'en former plus qu'une seule :
 <br />
 <strong> nameResearch = nameCity + ',' + nameCountry; </strong>
 <br />
-On  utilse la méthode <em>addIntoDelete(string)</em> pour l'ajouter au menu "supprimer". afin d'éviter les doublons, on parcours la liste de menuItems et on vérifie que le dernier élément est bien différent de celui qu'on souhaite ajouter auquel cas, le nouveau menuItem ne sera pas créer sinon on l'ajoute au menu "sélectionner". Pour récupérer le contenu du textField, on utilise la méthode "getText()" puis pour l'ajouter on l'ajoute au menu concerné comme ceci :</li>
+On  utilse la méthode <em>addIntoDelete(string)</em> pour l'ajouter au menu "supprimer". Afin d'éviter les doublons, on parcours la liste de menuItems et on vérifie que le dernier élément est bien différent de celui qu'on souhaite ajouter auquel cas, le nouveau menuItem ne sera pas créer sinon on l'ajoute au menu "sélectionner". Pour récupérer le contenu du textField, on utilise la méthode "getText()" puis pour l'ajouter on l'ajoute au menu concerné comme ceci :</li>
 </ul>
 <pre><code>for (int i = 0; i &lt;= select.getItems().size() ; ++i) {
     //If the last element isn't not the same the new insert
@@ -228,54 +228,104 @@ On  utilse la méthode <em>addIntoDelete(string)</em> pour l'ajouter au menu "su
 <br /></p>
 <ul>
 <li>
-<p>stateMenu (Menu menuCheck,int i, String newAddResearch) : cette fonciton retourne un booléen, initialisé à faux (false). On stock le dernier élément de la liste du menu (select ou delete). Si l'élement est bien différent du dernier qui a été ajouté, alors on retourne true, sinon cela reste à false.
+<p><strong>stateMenu(Menu menuCheck,int i, String newAddResearch)</strong> : cette fonciton retourne un booléen, initialisé à faux (false). On stock le dernier élément de la liste du menu (select ou delete). Si l'élement est bien différent du dernier qui a été ajouté, alors on retourne true, sinon cela reste à false.
 <br /><br /></p>
 </li>
 <li>
-<p>addIntoDelete (String nameCity) : cette methode permet de créer une nouvel menuItem pour le menu "supprimer" (en règle générale, il n'est pas possible d'affecter un noeud enfant à deux parents différents, il faut en créer un nouveau), on l'ajoute au menu (même principe que pour l'ajouter au menu "sélectionner" avec vérification qu'il n'y ai pas de doublons). Lorsque celui-ci est sélectionné, cela va entrainer la suppression du menu "supprimer" mais aussi du menu "sélectionner". Pour y arriver on utilise la méthode "setOnAction()" dans laquelle on a définit une boucle qui va parcourir le menu select et s'il contient la ville à supprimer alors on la retire avec la méthode <em>remove()</em> comme ceci :
+<p><strong>addIntoDelete(String nameCity)</strong> : cette methode permet de créer une nouvel menuItem pour le menu "supprimer" (en règle générale, il n'est pas possible d'affecter un noeud enfant à deux parents différents, il faut en créer un nouveau), on l'ajoute au menu (même principe que pour l'ajouter au menu "sélectionner" avec vérification qu'il n'y ai pas de doublons). Lorsque celui-ci est sélectionné, cela va entrainer la suppression du menu "supprimer" mais aussi du menu "sélectionner". Pour y arriver, on utilise la méthode "setOnAction()" dans laquelle on a définit une boucle qui va parcourir le menu select et s'il contient la ville à supprimer alors on la retire avec la méthode <em>remove()</em> comme ceci :
 <br />
 <strong> select.getItems().remove(i); </strong>
+<br /><br />
+On réalisé alors une nouvelle sauvegarde de la liste afin de mettre à jour la liste.</p>
+</li>
+<li>
+<p><strong>saveDataD(Menu menuToSave)</strong> : cette methode permet de sauvegarder après la suppression d'un item du menu. Tout d'abord, nous avons défini une variable <em>path</em> de type String qui contient le chemin relative du fichier nommé <code>backup.txt</code>. On crée ensuite un fichier avec la possibilité de réecrire ce fichier (attribut false) comme ceci :</p>
+</li>
+</ul>
+<pre><code>FileWriter writer = new FileWriter(file, false);
+ BufferedWriter bufferedWriter = new BufferedWriter(writer);
+ for (int i = 0; i &lt; menuToSave.getItems().size(); i++) {
+    bufferedWriter.write(menuToSave.getItems().get(i).getText());
+    bufferedWriter.newLine();
+ }
+ bufferedWriter.close();
+</code></pre>
+
+<p>Chaque ligne du menu (le contenu d'un menuItem est récupérer avec la commande getText()) sera lue et écrite dans le fichier. On affiche un message afin d'indiquer si la liste a bien été mise à jour ou non.
+<br /><br /></p>
+<ul>
+<li><strong>saveData(MenuItem menuItemToSave)</strong> : cette methode permet de sauvegarder après l'ajout d'un item dans le menu select. Tout d'abord nous avons définit une variable <em>path</em> de type String qui contient le chemin relative du fichier nommé <code>backup.txt</code>. On crée ensuite un fichier mais celui si ne sera pas réécrit à chaque fois, car si l'on rajoute une nouvelle ville alors que l'application a été fermé, cela va conserver uniquement la nouvelle qui vient d'être ajouté, la selection précédente sera alors perdue. C'est pourquoi on met l'attribue <em>true</em>. </li>
+</ul>
+<pre><code>FileWriter writer = new FileWriter(file, true);
+BufferedWriter bufferedWriter = new BufferedWriter(writer);
+bufferedWriter.write(menuItemToSave.getText());
+bufferedWriter.newLine();
+bufferedWriter.close();
+</code></pre>
+
+<p>Le contenu du menuItem (le texte) sera alors écrit dans le fichier à la suite du reste.On affiche un message afin d'indiquer si l'ajout c'est bien passé ou pas.
+<br /><br /></p>
+<ul>
+<li><strong>loadData(ActionEvent event)</strong> : cette methode permet de charger lorsque l'on clique sur "Recharger". Pour cela, on va lire le fichier qui a été sauvegardé avec les méthodes précédentes. Si le fichier existe, alors on crée un tampon permettant la lecture, tant que l'on a pas lu toutes les lignes du fichiers alors on récupère le contenu de la ligne, on en crée un nouveau menu item que l'on ajoute aux menus select et deleteMenu (via la méthode addIntoDelete).</li>
+</ul>
+<pre><code class="..">FileReader reader = new FileReader(path);
+BufferedReader bufferedReader = new BufferedReader(reader);
+String line;
+if (!reload) {
+    while ((line = bufferedReader.readLine()) != null) {
+        reload = true;
+        MenuItem newM = new MenuItem(line);
+        ...
+    }
+}
+bufferedReader.close();
+</code></pre>
+
+<p>On affiche un message afin d'indiquer si les données ont été chargé ou si la liste est déjà à jour.</p>
+<ul>
+<li>
+<p><strong>loadDataA()</strong> : cette méthode réalise exactement la même chose que ce qui a été expliqué au dessus, sauf que celle-ci est appelé au démarrage de l'application, afin que l'utilisateur puisse avoir accès tout suite à sa liste, les données seront déjà chargées.
 <br /><br /></p>
 </li>
 <li>
-<p>exitScene (ActionEvent e) : permet de quitter la scène et de stopper le timer si celui-ci est en cours et n'a pas été stoppé avec la méthode <em>stopAct()</em>.
+<p><strong>exitScene(ActionEvent e)</strong> : permet de quitter la scène et de stopper le timer si celui-ci est en cours et n'a pas été stoppé avec la méthode <em>stopAct()</em>.
 <br /><br /></p>
 </li>
 <li>
-<p>stopAct (ActionEvent e) : permet de stopper le timer si celui-ci est en cours, on affiche alors un message afin d'avertir l'utilisateur. Pour stopper le timer, on utilise la méthode "cancel()".
+<p><strong>stopAct(ActionEvent e)</strong> : permet de stopper le timer si celui-ci est en cours, on affiche alors un message afin d'avertir l'utilisateur. Pour stopper le timer, on utilise la méthode "cancel()".
 <br /><br /></p>
 </li>
 <li>
-<p>clean (ActionEvent e) : permet de réinitialiser l'ensemble de l'interface.
+<p><strong>clean(ActionEvent e)</strong> : permet de réinitialiser l'ensemble de l'interface.
 <br /><br /></p>
 </li>
-<li>hideMinMax () : cette méthode est utilisé dans la méthode <em>display()</em>, elle permet de cacher l'image des températures Max et Min si les deux sont invisibles sinon si l'un des deux est encore affichée, alors l'image reste visible.
+<li><strong>hideMinMax()</strong> : cette méthode est utilisé dans la méthode <em>display()</em>, elle permet de cacher l'image des températures Max et Min si les deux sont invisibles sinon si l'un des deux est encore affichée, alors l'image reste visible.
 <br /><br /></li>
-<li>checkTextFieldCity () : cette méthode permet de vérifier si le textField n'est pas vide (renvoie un message d'erreur sinon) si on récupère le contenu et on appelle la méthode "checkCityName()".
+<li><strong>checkTextFieldCity()</strong> : cette méthode permet de vérifier si le textField n'est pas vide (renvoie un message d'erreur sinon) si on récupère le contenu et on appelle la méthode "checkCityName()".
 <br /><br /></li>
-<li>checkCityName (String city) : on crée une nouvelle instance de la classe MeteoCLient et on lui passe dans le contructeur la ville. Si le résultat aboutit à une requête non null alors on appelle la méthode "displayGUI()" sion on affiche un message d'erreur via l'interface avec le label <code>result</code>. On met à jour l'action en modifiant le label <code>lastUpdate</code> avec la méthode <em>getDate()</em>.
+<li><strong>checkCityName(String city)</strong> : on crée une nouvelle instance de la classe MeteoCLient et on lui passe dans le contructeur la ville. Si le résultat aboutit à une requête non null alors on appelle la méthode "displayGUI()" sion on affiche un message d'erreur via l'interface avec le label <code>result</code>. On met à jour l'action en modifiant le label <code>lastUpdate</code> avec la méthode <em>getDate()</em>.
 <br /><br /></li>
-<li>valider (ActionEvent e) : cette méthode est utilisé pour déchencher l'action lorsque l'on appuie sur le bouton 'Valider'. Cette méthode appelle <code>checkTextFieldCity()</code> qui va appeller d'autres méthodes, s'il y a une erreur, on l'affiche en console.
+<li><strong>valider(ActionEvent e)</strong> : cette méthode est utilisé pour déchencher l'action lorsque l'on appuie sur le bouton 'Valider'. Cette méthode appelle <code>checkTextFieldCity()</code> qui va appeller d'autres méthodes, s'il y a une erreur, on l'affiche en console.
 <br /><br /></li>
-<li>getTemp (Float nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un float. 
+<li><strong>getTemp(Float nb, Boolean temperature)</strong> : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un float. 
 <br /><br /></li>
-<li>getTempDouble (Double nb, Boolean temperature) : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un double. 
+<li><strong>getTempDouble(Double nb, Boolean temperature)</strong> : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un double. 
 <br /><br /></li>
-<li>getDate () : cette méthode permet de récupéré la date du jour et d'afficher l'heure pour indiquer la dernière mise à jour.
+<li><strong>getDate()</strong> : cette méthode permet de récupérer la date du jour et d'afficher l'heure pour indiquer la dernière mise à jour.
 <br /><br /></li>
-<li>addDays (int nbDays) : permet d'obtenir les dates des jours suivants le jour actuel et de les afficher dans les 'conteneurs' pour les prévisions des jours suivants.
+<li><strong>addDays(int nbDays)</strong> : permet d'obtenir les dates des jours suivants le jour actuel et de les afficher dans les 'conteneurs' pour les prévisions des jours suivants.
 <br /><br /></li>
-<li>getTimeSun (long time) : permet d'obtenir sous format d'heures et minutes, le coucher et le lever du soleil.
+<li><strong>getTimeSun(long time)</strong> : permet d'obtenir sous format d'heures et minutes, le coucher et le lever du soleil.
 <br /><br /></li>
-<li>displayGUI (Result res) : à partir de la requête, on va pouvoir récupérer depuis la classe Result, les informations de la requête tel que le vent, les températures, la pression etc. On affiche également les îcones en lien avec les données qui sont dans le repertoire <code>/resources/images/</code>.
+<li><strong>displayGUI(Result res)</strong> : à partir de la requête, on va pouvoir récupérer depuis la classe Result, les informations de la requête tel que le vent, les températures, la pression etc. On affiche également les îcones en lien avec les données qui sont dans le repertoire <code>/resources/images/</code>.
 <br /><br /></li>
-<li>getIcon (int nbIcon, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant le nom de l'icône. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont le nom de l'icône nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>icon</code> dans une string.
+<li><strong>getIcon(int nbIcon, JSONObject obj)</strong> : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant le nom de l'icône. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont le nom de l'icône nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>icon</code> dans une string.
 <br /><br /></li>
-<li>getDesciption (int nbDesc, JSONObject obj) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant la description. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont la description nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>description</code> dans une string.
+<li><strong>getDesciption(int nbDesc, JSONObject obj)</strong> : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant la description. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, une autre liste contenant les données dont la description nommé <code>weather</code>, puis on cherche l'identifiant et on stocke l'objet <code>description</code> dans une string.
 <br /><br /></li>
-<li>getTempMaxMin (int nbDesc, JSONObject obj, String temp_string) : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner un double contenant la température. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, un objet <code>main</code>qui va permettre de retrouner un double à partir de s'il s'agit de la température max, min, ressentie.
+<li><strong>getTempMaxMin(int nbDesc, JSONObject obj, String temp_string)</strong> : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner un double contenant la température. On y accède via l'objet JSON depuis la liste <code>list</code>, on recherche dans cette liste, un objet <code>main</code>qui va permettre de retrouner un double à partir de s'il s'agit de la température max, min, ressentie.
 <br /><br /></li>
-<li>displayPrevGUI ()  : permet d'afficher les prévisions des prochains jours. On utilise les méthodes <em>addDays()</em>, <em>getTempDOuble()</em>, <em>getTempMaxMin()</em>, <em>getDescription()</em>, <em>getIcon()</em>.
+<li><strong>displayPrevGUI()</strong>  : permet d'afficher les prévisions des prochains jours. On utilise les méthodes <em>addDays()</em>, <em>getTempDOuble()</em>, <em>getTempMaxMin()</em>, <em>getDescription()</em>, <em>getIcon()</em>.
 <strong> Exemple : </strong></li>
 </ul>
 <pre><code>date2.setText(&quot;J+1 : &quot; + addDays(1)); *
@@ -285,13 +335,13 @@ imgIcon2.setImage(new Image(&quot;images/&quot; + getIcon(8,obj) +&quot;.png&quo
 </code></pre>
 
 <ul>
-<li>stateTimer ()  : retourne l'état du timer (booléen).
+<li><strong>stateTimer()</strong> : retourne l'état du timer (booléen).
 <br /><br /></li>
-<li>stateCity ()  : retourne un booléen pour indiquer si le textField devant récupérer la ville est vide ou pas.
+<li><strong>stateCity()</strong> : retourne un booléen pour indiquer si le textField devant récupérer la ville est vide ou pas.
 <br /><br /></li>
-<li>stateRefresh ()  : retourne un booléen pour indiquer si le textField devant récupérer le nombre est vide ou pas.
+<li><strong>stateRefresh()</strong> : retourne un booléen pour indiquer si le textField devant récupérer le nombre est vide ou pas.
 <br /><br /></li>
-<li>reload (ActionEvent event)  : permet de démarrer un timer qui va récupérer un nombre en minutes qui va être converti en millisecondes. On déclenche alors un thread (une tâche ou TimerTask), qui va rechargé les informations de l'interface, mettre à jour la maj tout les X minutes. Auquel cas, on retourne une Exception avec le message d'erreur (nombre invalide, saisir les deux champs etc). Afin que l'interface ne lague pas, on utilise la méthode <em>runLater()</em> qui permet de rafraîchir plus tard l'interface et de ne pas créer d'exception lié au Thread.</li>
+<li><strong>actualise(ActionEvent event)</strong> : permet de démarrer un timer qui va récupérer un nombre en minutes qui va être converti en millisecondes. On déclenche alors un thread (une tâche ou TimerTask), qui va rechargé les informations de l'interface, mettre à jour la maj tout les X minutes. Auquel cas, on retourne une Exception avec le message d'erreur (nombre invalide, saisir les deux champs etc). Afin que l'interface ne lague pas, on utilise la méthode <em>runLater()</em> qui permet de rafraîchir plus tard l'interface et de ne pas créer d'exception lié au Thread.</li>
 </ul>
 <h3 id="json">JSON</h3>
 <ul>
@@ -366,34 +416,27 @@ imgIcon2.setImage(new Image(&quot;images/&quot; + getIcon(8,obj) +&quot;.png&quo
 <p></br> Le pom.xml contient le modèle objet pour ce projet. Il contient toutes les informations importantes sur ce projet. Il permet de référencer le groupId, artifactId, version, nom, description, etc. Mais également d'y ajouter des plugins et dépendances pour compiler les ressources du projet permettant d'obtenir le <em>.bat</em> ou encore la possibilité de générer des archives (.zip,.rar) avec un <em>.Jar</em>.</p>
 <ul>
 <li>
-<p>Dans le POM.XML, l'encondage est définie en UTF-8, défini dans <code>properties</code> :</p>
+<p>Dans le POM.XML, l'encondage est définie en UTF-8, défini dans <code>properties</code> :
+</br><img alt="Image not found" src="images/pom.png" title="applciation" /></p>
 </li>
 <li>
-<p><img alt="Image not found" src="images/pom.png" title="applciation" /></p>
+<p>Dans le POM.XML, la version de Java, définie dans <code>dependencies</code> :
+</br><img alt="Image not found" src="images/pom1.png" title="applciation" /></p>
 </li>
 <li>
-<p>Dans le POM.XML, la version de Java, définie dans <code>dependencies</code> :</p>
+<p>Les dépendances ci-dessus permettent de lire et récupérer les informations des requêtes JSON.
+</br><img alt="Image not found" src="images/pom2.png" title="applciation" /></p>
 </li>
-<li>
-<p><img alt="Image not found" src="images/pom1.png" title="applciation" /></p>
-</li>
-</ul>
-<p>Les dépendances ci-dessus permettent de lire et récupérer les informations des requêtes JSON.</p>
-<ul>
-<li>
-<p><img alt="Image not found" src="images/pom2.png" title="applciation" /></p>
-</li>
-<li>
-<p>Ce plugin permet de générer automatiquement la distribution binaire du projet, dans le dossier <em>scripts</em> à la racine du projet. Cette génération est fixée à l'étape package de <code>Maven</code>.</p>
-</li>
-<li>
-<p><img alt="Image not found" src="images/pom3.png" title="applciation" /></p>
-</li>
+<li>Celles ci-dessus sont utilisés pour la JAVADOC ainsi que pour l'utilisation des outils pour la lecture et l'écriture des fichiers (<em>java.io</em>).
+</br></br></li>
+<li>les plugins permet de générer automatiquement la distribution binaire du projet, dans le dossier <em>scripts</em> à la racine du projet. Cette génération est fixée à l'étape package de <code>Maven</code>.
+</br><img alt="Image not found" src="images/pom3.png" title="applciation" /></li>
 </ul>
 <h2 id="ameliorations-possibles">Améliorations possibles</h2>
 <ul>
-<li>Possibilité de faire une sauvegarde du code;</li>
-<li>Faire du refactoring.</li>
+<li>Optimisation du code (avec d'autres design patterns);</li>
+<li>embellir l'interface (se baser sur les applications mobiles);</li>
+<li>faire du refactoring.</li>
 </ul>
               
             </div>
