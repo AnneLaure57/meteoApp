@@ -8,7 +8,7 @@ Pour pouvoir utiliser cette application, que vous soyez sur Linux, MAC OS ou Win
 
 ### Depuis le fichier source
 
-Il faut télécharger la distrubution source qui a été déposé sur Arche `TP3-CHARLES-0.0.1-SNAPSHOT-project.zip.`
+Il faut télécharger la distrubution source qui a été déposé sur Arche `TP3-CHARLES-meteo-0.0.1-SNAPSHOT-project.zip.`
 
 Voici l'arborescence du projet, une fois dézippé :
 

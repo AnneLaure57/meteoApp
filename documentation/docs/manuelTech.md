@@ -19,7 +19,7 @@
 
 Dans le diagramme, il y a les relations suivantes :
 
-* **Weather** : association avec la classe MeteoClent et la classe Result.
+* **Weather** : associations avec la classe MeteoClent et la classe Result.
 * **List** : associations avec les classe Wind, Weather, Rain, Clouds, Sys et Main.
 * **Result** : associations avec les classes Weather, Wind, Clouds, Coord, Sys et Main.
 * **Example** : associations avec les classes Weather, List, City et Main.
@@ -31,7 +31,7 @@ Afin de tester de nouvelles choses, j'ai utilisé le design pattern MVC (Modèle
 
 ## Les classes :
 
-En plus de cette documentation, les classes ont été commenté avec le plugin permettant la javadoc.
+En plus de cette documentation, les classes ont été commentées avec le plugin permettant la javadoc.
 
 ### App.java 
 
@@ -55,7 +55,7 @@ Il y a plusieurs constructeurs ainsi que les getters et setters.
 
 * **buildRequest()** : permet de construire une requête pour le jour actuel.
 
-* **getJsonWeatherByCityName()** : permet de se connecter à l'API pour obtenir le résultat de la requête pour le jour actuel. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.
+* **getJsonWeatherByCityName()** : permet de se connecter à l'API pour obtenir le résultat de la requête pour le jour actuel. Cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.
 
 * **getWeatherByCityName()** : permet construire la requête et d'accéder aux informations grâce à la classe `Result`. La langue a également été modifié afin d'avoir les noms des villes et pays en français.
 
@@ -63,7 +63,7 @@ Il y a plusieurs constructeurs ainsi que les getters et setters.
 
 * **getWeatherByCityNameFor5()** : permet construire la requête et d'accéder aux informations grâce à la classe `Example`.
 
-* **getJsonWeatherByCityNameFor5()** : permet de se connecter à l'API pour obtenir le résultat de la requête pour les prochins jours. cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.
+* **getJsonWeatherByCityNameFor5()** : permet de se connecter à l'API pour obtenir le résultat de la requête pour les prochins jours. Cette requête va nous permettre de générer les classes pour accéder aux contenus de la requête.
 
 
 ### Controller - Controller.java
@@ -110,10 +110,10 @@ FileWriter writer = new FileWriter(file, false);
  }
  bufferedWriter.close();
 ```
- Chaque ligne du menu (le contenu d'un menuItem est récupérer avec la commande getText()) sera lue et écrite dans le fichier. On affiche un message afin d'indiquer si la liste a bien été mise à jour ou non.
+ Chaque ligne du menu (le contenu d'un menuItem est récupéré avec la commande getText()) sera lue et écrite dans le fichier. On affiche un message afin d'indiquer si la liste a bien été mise à jour ou non.
 <br /><br />
 
-* **saveData(MenuItem menuItemToSave)** : cette methode permet de sauvegarder après l'ajout d'un item dans le menu select. Tout d'abord nous avons définit une variable *path* de type String qui contient le chemin relative du fichier nommé `backup.txt`. On crée ensuite un fichier mais celui si ne sera pas réécrit à chaque fois, car si l'on rajoute une nouvelle ville alors que l'application a été fermé, cela va conserver uniquement la nouvelle qui vient d'être ajouté, la selection précédente sera alors perdue. C'est pourquoi on met l'attribue *true*. 
+* **saveData(MenuItem menuItemToSave)** : cette methode permet de sauvegarder après l'ajout d'un item dans le menu select. Tout d'abord, nous avons défini une variable *path* de type String qui contient le chemin relative du fichier nommé `backup.txt`. On crée ensuite un fichier mais celui-ci ne sera pas réécrit à chaque fois, car si l'on rajoute une nouvelle ville alors que l'application a été fermé, cela va conserver uniquement la nouvelle qui vient d'être ajouté, la selection précédente sera alors perdue. C'est pourquoi on met l'attribue *true*. 
 ```
 FileWriter writer = new FileWriter(file, true);
 BufferedWriter bufferedWriter = new BufferedWriter(writer);
@@ -124,7 +124,7 @@ bufferedWriter.close();
 Le contenu du menuItem (le texte) sera alors écrit dans le fichier à la suite du reste.On affiche un message afin d'indiquer si l'ajout c'est bien passé ou pas.
 <br /><br />
 
-* **loadData(ActionEvent event)** : cette methode permet de charger lorsque l'on clique sur "Recharger". Pour cela, on va lire le fichier qui a été sauvegardé avec les méthodes précédentes. Si le fichier existe, alors on crée un tampon permettant la lecture, tant que l'on a pas lu toutes les lignes du fichiers alors on récupère le contenu de la ligne, on en crée un nouveau menu item que l'on ajoute aux menus select et deleteMenu (via la méthode addIntoDelete).
+* **loadData(ActionEvent event)** : cette methode permet de charger lorsque l'on clique sur "Recharger". Pour cela, on va lire le fichier qui a été sauvegardé avec les méthodes précédentes. Si le fichier existe, alors on crée un tampon permettant la lecture, tant que l'on a pas lu toutes les lignes du fichier alors on récupère le contenu de la ligne, on en crée un nouveau menu item que l'on ajoute aux menus select et deleteMenu (via la méthode addIntoDelete).
 ```...
 FileReader reader = new FileReader(path);
 BufferedReader bufferedReader = new BufferedReader(reader);
@@ -150,23 +150,23 @@ On affiche un message afin d'indiquer si les données ont été chargé ou si la
 
 * **clean(ActionEvent e)** : permet de réinitialiser l'ensemble de l'interface.
 <br /><br />
-* **hideMinMax()** : cette méthode est utilisé dans la méthode *display()*, elle permet de cacher l'image des températures Max et Min si les deux sont invisibles sinon si l'un des deux est encore affichée, alors l'image reste visible.
+* **hideMinMax()** : cette méthode est utilisée dans la méthode *display()*, elle permet de cacher l'image des températures Max et Min si les deux sont invisibles sinon si l'un des deux est encore affichée, alors l'image reste visible.
 <br /><br />
 * **checkTextFieldCity()** : cette méthode permet de vérifier si le textField n'est pas vide (renvoie un message d'erreur sinon) si on récupère le contenu et on appelle la méthode "checkCityName()".
 <br /><br />
 * **checkCityName(String city)** : on crée une nouvelle instance de la classe MeteoCLient et on lui passe dans le contructeur la ville. Si le résultat aboutit à une requête non null alors on appelle la méthode "displayGUI()" sion on affiche un message d'erreur via l'interface avec le label `result`. On met à jour l'action en modifiant le label `lastUpdate` avec la méthode *getDate()*.
 <br /><br />
-* **valider(ActionEvent e)** : cette méthode est utilisé pour déchencher l'action lorsque l'on appuie sur le bouton 'Valider'. Cette méthode appelle `checkTextFieldCity()` qui va appeller d'autres méthodes, s'il y a une erreur, on l'affiche en console.
+* **valider(ActionEvent e)** : cette méthode est utilisée pour déchencher l'action lorsque l'on appuie sur le bouton 'Valider'. Cette méthode appelle `checkTextFieldCity()` qui va appeller d'autres méthodes, s'il y a une erreur, on l'affiche en console.
 <br /><br />
 * **getTemp(Float nb, Boolean temperature)** : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un float. 
 <br /><br />
-* **getTempDouble(Double nb, Boolean temperature)** : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est un double. 
+* **getTempDouble(String nb, Boolean temperature)** : cette méthode permet de convertir du Farhenheit en Celsius. Dans cette méthode, la nombre entré est une string (permet d'éviter le cas où la température non convertie est un entier plutôt qu'un double). 
 <br /><br />
 * **getDate()** : cette méthode permet de récupérer la date du jour et d'afficher l'heure pour indiquer la dernière mise à jour.
 <br /><br />
 * **addDays(int nbDays)** : permet d'obtenir les dates des jours suivants le jour actuel et de les afficher dans les 'conteneurs' pour les prévisions des jours suivants.
 <br /><br />
-* **getTimeSun(long time)** : permet d'obtenir sous format d'heures et minutes, le coucher et le lever du soleil.
+* **getTimeSun(long time)** : permet d'obtenir sous format heures et minutes, le coucher et le lever du soleil.
 <br /><br />
 * **displayGUI(Result res)** : à partir de la requête, on va pouvoir récupérer depuis la classe Result, les informations de la requête tel que le vent, les températures, la pression etc. On affiche également les îcones en lien avec les données qui sont dans le repertoire `/resources/images/`.
 <br /><br />
@@ -174,7 +174,7 @@ On affiche un message afin d'indiquer si les données ont été chargé ou si la
 <br /><br />
 * **getDesciption(int nbDesc, JSONObject obj)** : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant la description. On y accède via l'objet JSON depuis la liste `list`, on recherche dans cette liste, une autre liste contenant les données dont la description nommé `weather`, puis on cherche l'identifiant et on stocke l'objet `description` dans une string.
 <br /><br />
-* **getTempMaxMin(int nbDesc, JSONObject obj, String temp_string)** : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner un double contenant la température. On y accède via l'objet JSON depuis la liste `list`, on recherche dans cette liste, un objet `main`qui va permettre de retrouner un double à partir de s'il s'agit de la température max, min, ressentie.
+* **getTempMaxMin(int nbDesc, JSONObject obj, String temp_string)** : permet de récupérer les îcones pour les prévisions des jours suivants et de retourner une string contenant la température. On y accède via l'objet JSON depuis la liste `list`, on recherche dans cette liste, un objet `main`qui va permettre de retrouner un double à partir de s'il s'agit de la température max, min, ressentie.
 <br /><br />
 * **displayPrevGUI()**  : permet d'afficher les prévisions des prochains jours. On utilise les méthodes *addDays()*, *getTempDOuble()*, *getTempMaxMin()*, *getDescription()*, *getIcon()*.
 ** Exemple : **

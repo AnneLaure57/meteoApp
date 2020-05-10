@@ -1,3 +1,4 @@
-Paris,FR
 Dallas,US
+London,UK
 Tokyo,JP
+Nancy

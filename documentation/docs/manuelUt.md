@@ -24,7 +24,7 @@ Ville internationale :
 
 #### Mise à jour faite le 07/05/2020 :
 
-Il est désormais possible de sauvegarder et charger sa liste personnalisée. C'est-à-dire, s'il s'agit de votre première utilisation, vous n'aurez pas fichier mais il sera généré automatiquement lors de votre premier ajout (vous insérez une ville sachant que `Paris,FR` est un exemple afin de montrer à l'utilisateur comment utiliser l'application). Dans le cadre d'un projet professionnel, il ne doit pas y avoir de choix impossable à l'utilisateur, cet onglet servant d'aide pour ce TP.
+Il est désormais possible de sauvegarder et charger sa liste personnalisée. C'est-à-dire, s'il s'agit de votre première utilisation, vous n'aurez pas de fichier mais il sera généré automatiquement lors de votre premier ajout (vous insérez une ville sachant que `Paris,FR` est un exemple afin de montrer à l'utilisateur comment utiliser l'application). Dans le cadre d'un projet professionnel, il ne doit pas y avoir de choix impossable à l'utilisateur, cet onglet servant d'aide pour ce TP.
 Le chargement des données sauvegardées est automatique lors du lancement de l'application, il en va de même pour la sauvegarde (lors d'un ajout ou d'une suppresion).
 
 Concernant le code couleur des messages de l'application:
@@ -78,7 +78,7 @@ Dans la barre de navigation, cliquez sur "Paramètres" > "Actualisation arrêt" 
 
 ### Nettoyer l'interface
 
-Dans la barre de navigation, cliquez sur "Paramètres" > "Nettoyer" pour remettre à 0 l'application. Vous aurez un message en bleu pour voir avertir qu'il n'y a aucune recherche car tout a été réinitialisé.
+Dans la barre de navigation, cliquez sur "Paramètres" > "Nettoyer" pour remettre à 0 l'application. Vous aurez un message en bleu pour vous avertir qu'il n'y a aucune recherche car tout a été réinitialisé.
 
 ![Image not found](images/interface9.png "interface")
 
